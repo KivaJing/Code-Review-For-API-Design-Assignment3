@@ -3,7 +3,7 @@
 
 
 
-void Entity::move(float deltatime)
+void Entity::Move(float deltatime)
 {
 	for (int i = 0; i < entity_list.size(); i++)
 	{
@@ -21,15 +21,15 @@ void Entity::move(float deltatime)
 	}
 }
 
-void Entity::update(float deltatime)
+void Entity::Update(float deltatime)
 {
 	if (is_active && entity_list.size())
 	{
-		move(deltatime);
+		Move(deltatime);
 	}
 }
 
-void Entity::render(PrimitiveBatch& batch)
+void Entity::Render(PrimitiveBatch& batch)
 {
 	if (is_active&&entity_list.size())
 	{
@@ -47,7 +47,7 @@ void Entity::render(PrimitiveBatch& batch)
 	}
 }
 
-void Entity::add_entity(const sf::FloatRect& rect, bool is_hollow, const float thickness, const sf::Color& color, sf::Vector2f speed)
+void Entity::Add_entity(const sf::FloatRect& rect, bool is_hollow, const float thickness, const sf::Color& color, sf::Vector2f speed)
 {
 	rect_entity temp;
 	temp.rect = rect;
@@ -58,7 +58,7 @@ void Entity::add_entity(const sf::FloatRect& rect, bool is_hollow, const float t
 	entity_list.push_back(temp);
 }
 
-void Entity::clear()
+void Entity::Clear()
 {
-	entity_list.clear();
+	entity_list.Clear();
 }
