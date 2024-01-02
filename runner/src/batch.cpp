@@ -178,7 +178,7 @@ namespace runner
       m_vertex_buffer.setPrimitiveType(sf::PrimitiveType::Triangles);
    }
 
-   void PrimitiveBatch::clear()
+   void PrimitiveBatch::Clear()
    {
       m_vertex_array.clear();
    }

@@ -109,8 +109,7 @@
     <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\ground.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\parallax_layer1.cpp" />
-    <ClCompile Include="src\parallax_layer2.cpp" />
+    <ClCompile Include="src\parallax_layer.cpp" />
     <ClCompile Include="src\player.cpp" />
     <ClCompile Include="src\text.cpp" />
   </ItemGroup>
@@ -122,8 +121,7 @@
     <ClInclude Include="include\entity.h" />
     <ClInclude Include="include\game.h" />
     <ClInclude Include="include\ground.h" />
-    <ClInclude Include="include\parallax_layer1.h" />
-    <ClInclude Include="include\parallax_layer2.h" />
+    <ClInclude Include="include\parallax_layer.h" />
     <ClInclude Include="include\text.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

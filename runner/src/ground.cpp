@@ -1,11 +1,11 @@
 #include "ground.h"
 
-void Ground::setup()
+void Ground::Setup()
 {
-	add_entity(floor, false, 1, barrier_color, { 0,0 });
+	Add_entity({ floor, false, 1, barrier_color, { 0,0 } });
 
 
-	rect_entity temp;
+	Rect_entity temp;
 	float left = 0;
 	float top = 600;
 		
@@ -14,8 +14,8 @@ void Ground::setup()
 		left += 100;
 		float height = 10;
 		float width = (rand() / float(RAND_MAX) * 20) + 20;
-		add_entity({ left,top ,width,height }, false, 0, barrier_color, { -400, 0 });//doted lines lower than ground
-		add_entity({ left + 40,top + 50,width,height }, false, 0, barrier_color, { -400,0 });
+		Add_entity({ { left,top ,width,height }, false, 0, barrier_color, { -400, 0 } });//doted lines lower than ground
+		Add_entity({ { left + 40,top + 50,width,height }, false, 0, barrier_color, { -400,0 } });
 	}
 	add_barriers(barrier, false, 0, barrier_color, { -400,0 });
 }
@@ -38,7 +38,7 @@ void Ground::draw_barriers(PrimitiveBatch& batch)
 	}
 }
 
-void Ground::render(PrimitiveBatch& batch)
+void Ground::Render(PrimitiveBatch& batch)
 {
 	if (is_active && entity_list.size())
 	{
@@ -67,11 +67,11 @@ void Ground::render(PrimitiveBatch& batch)
 	}
 }
 
-void Ground::update(float deltatime)
+void Ground::Update(float deltatime)
 {
 	if (is_active && entity_list.size())
 	{
-		move(deltatime);
+		Move(deltatime);
 	}
 	wait_time += deltatime;
 	if (wait_time > add_barrier_time)
@@ -83,7 +83,7 @@ void Ground::update(float deltatime)
 	}
 }
 
-void Ground::clear()
+void Ground::Clear()
 {
 	entity_list.clear();
 	barriers.clear();
@@ -110,7 +110,7 @@ int Ground::get_barrier_quantaty()
 
 
 
-void Ground::move(float deltatime)
+void Ground::Move(float deltatime)
 {
 	for (int i = 0; i < entity_list.size(); i++)
 	{
@@ -132,7 +132,7 @@ void Ground::move(float deltatime)
 
 void Ground::add_barriers(const sf::FloatRect& rect, bool is_hollow, const float thickness, const sf::Color& color, sf::Vector2f speed)
 {
-	rect_entity temp;
+	Rect_entity temp;
 	temp.rect = rect;
 	temp.is_hollow = is_hollow;
 	temp.thickness = thickness;

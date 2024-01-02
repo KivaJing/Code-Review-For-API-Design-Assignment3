@@ -12,10 +12,10 @@ void runner::Game::end_screen(PrimitiveBatch& batch)
 void runner::Game::end()
 {
    
-    ground.clear();
-    layer1.clear();
-    layer2.clear();
-    text.clear();
+    ground.Clear();
+    layer.Clear();
+    closerLayer.Clear();
+    text.Clear();
     ended = true;
     started = false;
     if (score > high_score)
@@ -23,7 +23,7 @@ void runner::Game::end()
         high_score = score;
 
     }
-    text.clear();
+    text.Clear();
     text.set_score(0);
     text.add_text("high score:" + std::to_string(high_score), { 20,200 }, 2);
     text.add_text("score:" + std::to_string(score), { 20,300 }, 2);
@@ -38,11 +38,11 @@ void runner::Game::start()
     if (!started)
     {
     started = true;
-    setup();
+    Setup();
 
     }
     
-    text.clear();
+    text.Clear();
     ended = false;
 }
 
@@ -52,7 +52,7 @@ void runner::Game::reset()
     if (!started && !ended)
     {
     ended = false;
-    text.clear();
+    text.Clear();
     text.add_text("SIMPLE DINO RUNNER", {20,200 }, 4);
     text.add_text("press s to start", { 350,350 }, 2);
    
@@ -62,7 +62,7 @@ void runner::Game::reset()
     }
 }
 
-void runner::Game::update(float deltatime)
+void runner::Game::Update(float deltatime)
 {
    //sf::FloatRect temp = player.get_rect();
     std::vector<sf::FloatRect>temp;
@@ -72,10 +72,10 @@ void runner::Game::update(float deltatime)
         temp.push_back(ground.get_barrier(i));
     }
 
-    layer1.update(deltatime);
-    layer2.update(deltatime);
-    ground.update(deltatime);
-    player.update(deltatime);
+    layer.Update(deltatime);
+    closerLayer.Update(deltatime);
+    ground.Update(deltatime);
+    player.Update(deltatime);
     if (started )
     {
 
@@ -84,7 +84,6 @@ void runner::Game::update(float deltatime)
     }
     for (int i = 0; i < quantaty; i++)
     {
-       // std::cout << ground.get_barrier(i).left << std::endl;
         bool collided=collision.collision(temp[i], ground.get_barrier(i), player.get_rect());
         if (collided&&ground.get_barrier(i).left!=1280)
         {
@@ -97,19 +96,18 @@ void runner::Game::update(float deltatime)
     }
 }
 
-void runner::Game::render(PrimitiveBatch& batch, sf::RenderTarget& target)
+void runner::Game::Render(PrimitiveBatch& batch, sf::RenderTarget& target)
 {
-   layer1.render(batch);
-   layer2.render(batch);
-    ground.render(batch);
-    
+    layer.Render(batch);
+    closerLayer.Render(batch);
+    ground.Render(batch);
 }
 
 void runner::Game::render_toplayer(sf::RenderTarget& target)
 {
-    text.render(target);
+    text.Render(target);
     if (started) {
-        player.render(target);
+        player.Render(target);
     }
 }
 
@@ -120,12 +118,12 @@ void runner::Game::jump()
 
 
 
-void runner::Game::setup()
+void runner::Game::Setup()
 {
-    layer1.setup();
-    layer2.setup();
-    ground.setup();
-    player.setup();
+    layer.Setup({ 20,120,50,150,150, false });
+    closerLayer.Setup({ 50,250,100,300,250, true });
+    ground.Setup();
+    player.Setup();
    
 }
 

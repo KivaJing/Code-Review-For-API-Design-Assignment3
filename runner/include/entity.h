@@ -6,26 +6,25 @@ using namespace runner;
 class Entity
 {
 protected:
-	struct rect_entity
+	struct Rect_entity
 	{
-		sf::FloatRect rect = {100,100,100,100};
-		bool is_hollow=true;
-		float thickness=1;
-		sf::Color color=sf::Color::Red;
-		sf::Vector2f speed = {0,0};
+		sf::FloatRect rect = { 100.0f,100.0f,100.0f,100.0f };
+		bool is_hollow = true;
+		float thickness = 1.0f;
+		sf::Color color = sf::Color::Red;
+		sf::Vector2f speed = { 0.0f ,0.0f };
 	};
-	const float screen_width = 1280;
-	const float screen_height = 720;
+	static constexpr float screen_width = 1280.0f;
+	static constexpr float screen_height = 720.0f;
 
 private:
 	bool is_active = true;
 
 public:
-	std::vector <rect_entity> entity_list;
+	std::vector <Rect_entity> entity_list;
 	virtual void Move(float deltatime);
-	Entity() = default;
 	virtual void Update(float deltatime);
-	virtual void Render(PrimitiveBatch&batch);
-	virtual void Add_entity(const sf::FloatRect& rect, bool is_hollow, const float thickness, const sf::Color& color, sf::Vector2f speed);
+	virtual void Render(PrimitiveBatch& batch);
+	virtual void Add_entity(Rect_entity entity);
 	virtual void Clear();
 };

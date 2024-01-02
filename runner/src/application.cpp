@@ -38,11 +38,11 @@ namespace runner
             }
          }
 
-         if (!update()) {
+         if (!Update()) {
             m_window.close();
          }
 
-         render();
+         Render();
       }
 
       exit();
@@ -58,19 +58,19 @@ namespace runner
      //  save. ~save();
    }
 
-   bool Application::update()
+   bool Application::Update()
    {
       m_deltatime = m_clock.restart();
       deltatime = m_deltatime.asSeconds();
       float fps = 1 / deltatime;
       m_window.setTitle("score:"+std::to_string(game.get_score()));
-      game.update(deltatime);
+      game.Update(deltatime);
       return m_running;
    }
 
-   void Application::render()
+   void Application::Render()
    {
-      m_batch.clear();
+      m_batch.Clear();
       { 
          //// note: draw a white line from the center of the screen 
          ////       to the current mouse position
@@ -87,7 +87,7 @@ namespace runner
       m_window.clear(sf::Color{ 0x44, 0x55, 0x66, 0xff });
      
 
-      game.render(m_batch,m_window);
+      game.Render(m_batch,m_window);
       m_batch.present(m_window);
       game.render_toplayer(m_window);
      

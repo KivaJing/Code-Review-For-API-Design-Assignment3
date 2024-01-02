@@ -22,10 +22,10 @@ class Player : public Entity
 	void animate(float deltatime);
 	
 public:
-	void setup();
-	void render(PrimitiveBatch& batch);//not used
-	void render(sf::RenderTarget& target);
-	void update(float deltatime);
+	void Setup();
+	void Render(PrimitiveBatch& batch);//not used
+	void Render(sf::RenderTarget& target);
+	void Update(float deltatime);
 	void jump();
 	void on_ground();
 	

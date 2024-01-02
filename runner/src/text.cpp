@@ -6,11 +6,11 @@ Text::Text()
 	font.loadFromFile("assets/fonts.ttf");
 }
 
-void Text::render(PrimitiveBatch& batch)
+void Text::Render(PrimitiveBatch& batch)
 {
 }
 
-void Text::render(sf::RenderTarget& target)
+void Text::Render(sf::RenderTarget& target)
 {
 	if (score_value != 0)
 	{
@@ -38,7 +38,7 @@ void Text::set_score(long value)
 	score_value = value;
 }
 
-void Text::update(float deltatime)
+void Text::Update(float deltatime)
 {
 	
 }
@@ -56,7 +56,7 @@ void Text::add_text(std::string text, sf::Vector2f position,float scale)
 	return ;
 }
 
-void Text::clear()
+void Text::Clear()
 {
 	text_data.clear();
 }

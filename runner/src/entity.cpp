@@ -1,23 +1,20 @@
 #include"entity.h"
 
-
-
-
 void Entity::Move(float deltatime)
 {
-	for (int i = 0; i < entity_list.size(); i++)
+	for (auto& entity : entity_list)
 	{
-		entity_list[i].rect.left += entity_list[i].speed.x * deltatime;
-		entity_list[i].rect.top += entity_list[i].speed.y * deltatime;
-		if (entity_list[i].rect.left<0 || entity_list[i].rect.left + entity_list[i].rect.width > screen_width)
-		{
-			entity_list[i].speed.x *= -1;
-		}
-		if (entity_list[i].rect.top<0 || entity_list[i].rect.top + entity_list[i].rect.height>screen_height)
-		{
-			entity_list[i].speed.y *= -1;
-		}
+		entity.rect.left += entity.speed.x * deltatime;
+		entity.rect.top += entity.speed.y * deltatime;
 
+		if (entity.rect.left < 0 || entity.rect.left + entity.rect.width > screen_width)
+		{
+			entity.speed.x *= -1;
+		}
+		if (entity.rect.top < 0 || entity.rect.top + entity.rect.height > screen_height)
+		{
+			entity.speed.y *= -1;
+		}
 	}
 }
 
@@ -31,34 +28,29 @@ void Entity::Update(float deltatime)
 
 void Entity::Render(PrimitiveBatch& batch)
 {
-	if (is_active&&entity_list.size())
+	if (is_active && !entity_list.empty())
 	{
-		for (int i = 0; i < entity_list.size(); i++)
+		for (const auto& entity : entity_list)
 		{
-			if (entity_list[i].is_hollow)
+			if (entity.is_hollow)
 			{
-				batch.draw_rectangle(entity_list[i].rect, entity_list[i].thickness, entity_list[i].color);
+				batch.draw_rectangle(entity.rect, entity.thickness, entity.color);
 			}
 			else
 			{
-				batch.draw_rectangle(entity_list[i].rect, entity_list[i].color);
+				batch.draw_rectangle(entity.rect, entity.color);
 			}
 		}
 	}
 }
 
-void Entity::Add_entity(const sf::FloatRect& rect, bool is_hollow, const float thickness, const sf::Color& color, sf::Vector2f speed)
+void Entity::Add_entity(Rect_entity entity)
 {
-	rect_entity temp;
-	temp.rect = rect;
-	temp.is_hollow = is_hollow;
-	temp.thickness = thickness;
-	temp.color = color;
-	temp.speed = speed;
+	Rect_entity temp{entity.rect, entity.is_hollow, entity.thickness, entity.color, entity.speed};
 	entity_list.push_back(temp);
 }
 
 void Entity::Clear()
 {
-	entity_list.Clear();
+	entity_list.clear();
 }

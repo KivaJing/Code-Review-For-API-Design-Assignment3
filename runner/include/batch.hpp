@@ -15,7 +15,7 @@ namespace runner
       PrimitiveBatch();
       PrimitiveBatch(std::size_t triangle_capacity);
 
-      void clear();
+      void Clear();
       void draw_line(const sf::Vector2f &from, const sf::Vector2f &to, const float thickness, const sf::Color &color);
       void draw_line(const sf::Vector2f &from, const sf::Vector2f &to, const float thickness, const sf::Color &from_color, const sf::Color &to_color);
       void draw_circle(const sf::Vector2f &center, const float radius, const int sections, const sf::Color &color);

@@ -23,7 +23,7 @@ void Player::animate(float deltatime)
 	}
 }
 
-void Player::setup()
+void Player::Setup()
 {
 	frame1.loadFromFile("assets/playerFrame1.png");
 	frame2.loadFromFile("assets/playerFrame2.png");
@@ -32,11 +32,11 @@ void Player::setup()
 	
 }
 
-void Player::render(PrimitiveBatch& batch)
+void Player::Render(PrimitiveBatch& batch)
 {//not used
 }
 
-void Player::render(sf::RenderTarget& target)
+void Player::Render(sf::RenderTarget& target)
 {
 	
 	sf::Sprite temp;
@@ -50,7 +50,7 @@ void Player::render(sf::RenderTarget& target)
 	
 }
 
-void Player::update(float deltatime)
+void Player::Update(float deltatime)
 {
 	animate(deltatime);
 

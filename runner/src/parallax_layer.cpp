@@ -15,7 +15,7 @@ void Layer::Setup(const LayerSetupParams& params)
             255,
             static_cast<sf::Uint8>(colorRange(re))
         };
-        Add_entity({ left, top - height + 500, width, height }, params.isHollow, 5, temp_color, { -params.speedX, 0 });
+        Add_entity({ { left, top - height + 500, width, height }, params.isHollow, 5, temp_color, { -params.speedX, 0 } });
     }
 }
 
