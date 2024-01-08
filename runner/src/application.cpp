@@ -63,7 +63,7 @@ namespace runner
       m_deltatime = m_clock.restart();
       deltatime = m_deltatime.asSeconds();
       float fps = 1 / deltatime;
-      m_window.setTitle("score:"+std::to_string(game.get_score()));
+      m_window.setTitle( "score:" + std::to_string(game.get_score()));
       game.Update(deltatime);
       return m_running;
    }
@@ -72,16 +72,6 @@ namespace runner
    {
       m_batch.Clear();
       { 
-         //// note: draw a white line from the center of the screen 
-         ////       to the current mouse position
-         //sf::Vector2f center_screen{ 640.0f, 360.0f };
-         //m_batch.draw_line(center_screen, m_mouse_position, 1.0f, sf::Color::White);
-
-         //// note: draw a small green circle around the current 
-         ////       mouse position
-         //m_batch.draw_circle(m_mouse_position, 15.0f, 12, 1.0f, sf::Color::Green);
-        //  m_batch.draw_text(0, 0, "test", m_window);
-        // layer1.render(m_batch);
       }
     
       m_window.clear(sf::Color{ 0x44, 0x55, 0x66, 0xff });

@@ -64,9 +64,8 @@ void runner::Game::reset()
 
 void runner::Game::Update(float deltatime)
 {
-   //sf::FloatRect temp = player.get_rect();
-    std::vector<sf::FloatRect>temp;
-    int quantaty= ground.get_barrier_quantaty();
+    std::vector <sf::FloatRect> temp;
+    int quantaty = ground.Get_barrier_quantaty();
     for (int i = 0; i < quantaty; i++)
     {
         temp.push_back(ground.get_barrier(i));
@@ -76,21 +75,20 @@ void runner::Game::Update(float deltatime)
     closerLayer.Update(deltatime);
     ground.Update(deltatime);
     player.Update(deltatime);
-    if (started )
-    {
 
-    score += static_cast<long>(10000 * deltatime);
-    text.set_score(score);
+    if (started)
+    {
+        score += static_cast<long>(10000 * deltatime);
+        text.set_score(score);
     }
+
     for (int i = 0; i < quantaty; i++)
     {
-        bool collided=collision.collision(temp[i], ground.get_barrier(i), player.get_rect());
-        if (collided&&ground.get_barrier(i).left!=1280)
+        bool collided = collision.collision(temp[i], ground.get_barrier(i), player.get_rect());
+        if (collided && ground.get_barrier(i).left != 1280)
         {
             end();
-            started = ended = false;
-          
-            
+            started = ended = false; 
         }
         
     }
@@ -122,7 +120,6 @@ void runner::Game::Setup()
     closerLayer.Setup({ 50,250,100,300,250, true });
     ground.Setup();
     player.Setup();
-   
 }
 
 long runner::Game::get_score()
