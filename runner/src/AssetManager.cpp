@@ -19,7 +19,7 @@ sf::Text AssetManager::SetText(std::string textSentence, int size, sf::Uint32 te
     return text;
 }
 
-int AssetManager::GetLength()
+int AssetManager::GetLength() noexcept
 {
     int size = static_cast<int>(m_textures.size());
     return size;

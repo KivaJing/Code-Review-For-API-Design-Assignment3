@@ -5,7 +5,7 @@
 class AssetManager
 {
 public:
-	AssetManager() = default;
+	AssetManager() noexcept = default;
 	~AssetManager();
 
 	const sf::Texture& GetTexture(std::string name);
@@ -16,5 +16,5 @@ public:
 
 private:
 	sf::Font m_font;
-	int GetLength();
+	int GetLength() noexcept;
 };

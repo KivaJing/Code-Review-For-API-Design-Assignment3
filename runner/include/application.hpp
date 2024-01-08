@@ -1,17 +1,14 @@
-// application.hpp
-
 #pragma once
 
 #include "batch.hpp"
 #include "game.h"
-#include "AssetManager.h"
 
 namespace runner
 {
    class Application final
    {
    public:
-      Application()=default ;
+      Application() = default ;
 
       void run();
 
@@ -37,7 +34,6 @@ namespace runner
       sf::Clock        m_clock;
       sf::Time         m_deltatime;
       sf::Vector2f     m_mouse_position;
-      AssetManager     m_AssetManager;
       Game game;
       
    };

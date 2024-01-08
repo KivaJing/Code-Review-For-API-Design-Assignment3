@@ -14,7 +14,7 @@ struct LayerSetupParams {
 class Layer: public Entity
 {
 public:
-	Layer() : re(rd()), widthRange(0.0f, 1.0f), heightRange(0.0f, 1.0f), colorRange(0, 255)
+	Layer() noexcept : re(rd()), widthRange(0.0f, 1.0f), heightRange(0.0f, 1.0f), colorRange(0, 255)
 	{
 	}
 	void Setup(const LayerSetupParams& params);

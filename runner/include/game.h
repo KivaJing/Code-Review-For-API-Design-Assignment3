@@ -1,5 +1,6 @@
 #pragma once
 #include "batch.hpp"
+#include "AssetManager.h"
 #include "collision.h"
 #include "parallax_layer.h"
 #include "ground.h"
@@ -12,9 +13,6 @@ namespace runner
 	class Game
 	{
 	private:
-		void start_screen(PrimitiveBatch& batch);
-		void end_screen(PrimitiveBatch& batch);
-		
 		bool started = false;
 		bool ended = false;
 
@@ -24,15 +22,16 @@ namespace runner
 		Ground ground;
 		Text text;
 		Player player;
+		AssetManager assetManager;
 
 		long score = 0;
 		long high_score = 0;
-		void end();
+		void Setup();
+		void End();
 
 	public:
-		void Setup(const sf::Texture& texture1, const sf::Texture& texture2);
-		void start(const sf::Texture& texture1, const sf::Texture& texture2);
-		void reset();
+		void Start();
+		void Reset();
 		void Update(float deltatime);
 		void Render(PrimitiveBatch& batch, sf::RenderTarget& target);
 		void render_toplayer(sf::RenderTarget& target);

@@ -6,6 +6,9 @@ using namespace runner;
 class Entity
 {
 protected:
+	static constexpr float screen_width = 1280.0f;
+	static constexpr float screen_height = 720.0f;
+
 	struct Rect_entity
 	{
 		sf::FloatRect rect = { 100.0f, 100.0f, 100.0f, 100.0f };
@@ -14,8 +17,6 @@ protected:
 		sf::Color color = sf::Color::Red;
 		sf::Vector2f speed = { 0.0f, 0.0f };
 	};
-	static constexpr float screen_width = 1280.0f;
-	static constexpr float screen_height = 720.0f;
 
 private:
 	bool is_active = true;

@@ -1,17 +1,15 @@
 #include "player.h"
-#include <iostream>
 
-void Player::Setup(const sf::Texture& texture1, const sf::Texture& texture2)
+void Player::Setup(const sf::Texture& sprite1, const sf::Texture& sprite2)
 {
-	anim.SetUp(texture1, texture2);
+	anim.SetUp(sprite1, sprite2);
 }
 
 void Player::Render(sf::RenderTarget& target)
 {
-	sf::Sprite temp = anim.GetCurrentTexture();
+	sf::Sprite temp = anim.GetCurrentSprite();
 	temp.setPosition(position);
 	temp.setScale(scale, scale);
-
 	target.draw(temp);
 }
 
@@ -22,13 +20,13 @@ void Player::Update(float deltatime)
 	if (jump_timer > 0)
 	{
 		jump_timer -= deltatime;
-		if (jump_timer >= jump_time * 0.5f)
+		if (jump_timer >= duration * 0.5f)
 		{
-			position.y -= static_cast<float>(jump_height / (jump_time * 0.5f) * deltatime);
+			position.y -= jump_height / (duration * 0.5f) * deltatime;
 		}
 		else
 		{	
-			position.y += static_cast<float>(jump_height / (jump_time * 0.5) * deltatime);
+			position.y += jump_height / (duration * 0.5f) * deltatime;
 		}
 	}
 	else
@@ -38,23 +36,23 @@ void Player::Update(float deltatime)
 	}
 }
 
-void Player::Jump()
+void Player::Jump() noexcept
 {
 	if (is_on_ground)
 	{
 		is_on_ground = false;
-		jump_timer = jump_time;
+		jump_timer = duration;
 	}
 }
 
-void Player::Landing()
+void Player::Landing() noexcept
 {
 	is_on_ground = true;
-	position.y = 150;
+	position.y = landingPositionY;
 }
 
 sf::FloatRect Player::GetRect()
 {
-	sf::FloatRect temp{ position.x, position.y, scale * 100, scale * 200};	
+	sf::FloatRect temp{ position.x, position.y, scale * size.x, scale * size.y};	
 	return temp;
 }

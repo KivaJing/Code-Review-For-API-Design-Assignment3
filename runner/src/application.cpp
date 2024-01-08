@@ -1,11 +1,7 @@
-// application.cpp
-
 #include "application.hpp"
 
 namespace runner
 {
-	static const char* kPlayerFrame1ID = "player1";
-	static const char* kPlayerFrame2ID = "player2";
 
 	void Application::run()
 	{
@@ -13,9 +9,7 @@ namespace runner
 		const sf::Uint32 flags = sf::Style::Titlebar | sf::Style::Close;
 		m_window.create(mode, "pineapple", flags);
 
-		m_AssetManager.LoadTexture(kPlayerFrame1ID, "assets/playerFrame1.png");
-		m_AssetManager.LoadTexture(kPlayerFrame2ID, "assets/playerFrame2.png");
-		game.reset();
+		game.Reset();
 
 		if (!m_window.isOpen() || !enter()) {
 			return;
@@ -104,11 +98,11 @@ namespace runner
 		}
 		if (key == sf::Keyboard::Key::R)
 		{
-			game.reset();
+			game.Reset();
 		}
 		if (key == sf::Keyboard::Key::S)
 		{
-			game.start(m_AssetManager.GetTexture(kPlayerFrame1ID), m_AssetManager.GetTexture(kPlayerFrame2ID));
+			game.Start();
 		}
 	}
 

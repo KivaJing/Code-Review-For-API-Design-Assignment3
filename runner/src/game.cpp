@@ -1,16 +1,10 @@
 #include "game.h"
 #include <iostream>
 
-void runner::Game::start_screen(PrimitiveBatch& batch)
-{
-}
+static const char* kPlayerFrame1ID = "player1";
+static const char* kPlayerFrame2ID = "player2";
 
-void runner::Game::end_screen(PrimitiveBatch& batch)
-{
-}
-
-
-void runner::Game::end()
+void runner::Game::End()
 {
    
     ground.Clear();
@@ -33,19 +27,19 @@ void runner::Game::end()
     score = 0;
 }
 
-void runner::Game::start(const sf::Texture& texture1, const sf::Texture& texture2)
+void runner::Game::Start()
 {
     if (!started)
     {
         started = true;
-        Setup(texture1, texture2);
+        Setup();
     }
     
     text.Clear();
     ended = false;
 }
 
-void runner::Game::reset()
+void runner::Game::Reset()
 {
     if (!started && !ended)
     {
@@ -83,7 +77,7 @@ void runner::Game::Update(float deltatime)
         bool collided = collision.collision(temp[i], ground.Get_barrier(i), player.GetRect());
         if (collided && ground.Get_barrier(i).left != 1280)
         {
-            end();
+            End();
             started = ended = false; 
         }
         
@@ -110,12 +104,15 @@ void runner::Game::Jump()
     player.Jump();
 }
 
-void runner::Game::Setup(const sf::Texture& texture1, const sf::Texture& texture2)
+void runner::Game::Setup()
 {
+    assetManager.LoadTexture(kPlayerFrame1ID, "assets/playerFrame1.png");
+    assetManager.LoadTexture(kPlayerFrame2ID, "assets/playerFrame2.png");
+
     layer.Setup({ 20,120,50,150,150, false });
     closerLayer.Setup({ 50,250,100,300,250, true });
     ground.Setup();
-    player.Setup(texture1, texture2);
+    player.Setup(assetManager.GetTexture(kPlayerFrame1ID), assetManager.GetTexture(kPlayerFrame2ID));
 }
 
 long runner::Game::get_score()

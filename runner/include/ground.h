@@ -8,15 +8,15 @@ class Ground : public Entity
 	const sf::Color barrier_color = { 200,200,200 };
 
 	std::vector <Rect_entity> barriers;
-	bool is_active = true;
-	float add_barrier_time = 15;
-	float wait_time = 0;
+	bool is_active;
+	float add_barrier_time;
+	float wait_time;
 
 	void Move(float deltatime) override;
 	void AddBarriers(const sf::FloatRect& rect, bool is_hollow, const float thickness, const sf::Color& color, sf::Vector2f speed);
 
 public:
-	Ground() : is_active(true), add_barrier_time(15), wait_time(0) {}
+	Ground() noexcept: is_active(true), add_barrier_time(15), wait_time(0) {}
 	void Setup();
 	void Render(PrimitiveBatch& batch) override;
 	void Update(float deltatime) override;

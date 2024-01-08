@@ -6,7 +6,7 @@ void Animator::SetUp(const sf::Texture& frame1, const sf::Texture& frame2)
 	sprite2.setTexture(frame2);
 }
 
-void Animator::Animate(float deltatime)
+void Animator::Animate(float deltatime) noexcept
 {
 	animationTimer += deltatime;
 	if (animationTimer >= CHANGE_TIME)
@@ -17,7 +17,7 @@ void Animator::Animate(float deltatime)
 	}
 }
 
-sf::Sprite Animator::GetCurrentSprite()
+sf::Sprite Animator::GetCurrentSprite() noexcept
 {
 	return currentSprite;
 }
