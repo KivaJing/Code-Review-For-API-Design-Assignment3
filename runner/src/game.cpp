@@ -55,7 +55,7 @@ void runner::Game::Reset()
 void runner::Game::Update(float deltatime)
 {
     std::vector <sf::FloatRect> temp;
-    int quantaty = ground.Get_barrier_quantaty();
+    int quantaty = ground.Get_Barrier_Quantity();
     for (int i = 0; i < quantaty; i++)
     {
         temp.push_back(ground.Get_barrier(i));

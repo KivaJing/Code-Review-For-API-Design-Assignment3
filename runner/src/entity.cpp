@@ -4,24 +4,24 @@ void Entity::Move(float deltatime)
 {
 	for (auto& entity : entity_list)
 	{
-		entity.rect.left += entity.speed.x * deltatime;
-		entity.rect.top += entity.speed.y * deltatime;
+		entity.rect.left += entity.m_Speed.x * deltatime;
+		entity.rect.top += entity.m_Speed.y * deltatime;
 
 		if (entity.rect.left < 0 || entity.rect.left + entity.rect.width > screen_width)
 		{
-			entity.speed.x *= -1;
+			entity.m_Speed.x *= -1;
 		}
 		if (entity.rect.top < 0 || entity.rect.top + entity.rect.height > screen_height)
 		{
-			entity.speed.y *= -1;
+			entity.m_Speed.y *= -1;
 		}
 	}
 }
 
 void Entity::MoveToLeft(Rect_entity& entity, float deltatime)
 {
-	entity.rect.left += deltatime * entity.speed.x;
-	if (entity.rect.left < 0 || entity.rect.left + entity.rect.width < 0)
+	entity.rect.left += deltatime * entity.m_Speed.x;
+	if (entity.rect.left + entity.rect.width < 0)
 	{
 		entity.rect.left = screen_width;
 	}
@@ -55,7 +55,7 @@ void Entity::Render(PrimitiveBatch& batch)
 
 void Entity::Add_entity(Rect_entity entity)
 {
-	Rect_entity temp{entity.rect, entity.is_hollow, entity.thickness, entity.color, entity.speed};
+	Rect_entity temp{entity.rect, entity.is_hollow, entity.thickness, entity.color, entity.m_Speed};
 	entity_list.push_back(temp);
 }
 

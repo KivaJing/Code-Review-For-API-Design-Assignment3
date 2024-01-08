@@ -1,26 +1,30 @@
 #include "ground.h"
+#include <random>
 
 void Ground::Setup()
 {
-	Rect_entity temp;
-	float left = 0;
-	float top = 600;
-		
-	while (left < screen_width)
+	sf::Vector2f position = {0.0f, 600.0f};
+	std::random_device rd;
+	std::default_random_engine re(rd());
+	std::uniform_real_distribution<float> widthDistribution(20.0f, 40.0f);
+
+	while (position.x < screen_width)
 	{
-		left += 100;
-		float height = 10;
-		float width = (rand() / float(RAND_MAX) * 20) + 20;
-		Add_entity({ { left,top ,width,height }, false, 0, barrier_color, { -400, 0 } });
-		Add_entity({ { left + 40,top + 50,width,height }, false, 0, barrier_color, { -400,0 } });
+		position.x += 100.0f;
+		float height = 10.0f;
+		float width = widthDistribution(re);
+		Add_entity({ { position.x, position.y, width, height }, false, 0.0f, barrier_color, m_Speed });
+		Add_entity({ { position.x + 40.0f, position.y + 50.0f, width, height }, false, 0.0f, barrier_color, m_Speed });
 	}
-	AddBarriers(barrierSize, false, 0, barrier_color, { -400,0 });
+	AddBarriers(barrierSize, false, 0, barrier_color, { -400, 0 });
 }
 
 void Ground::Render(PrimitiveBatch& batch)
-{
+{	
 	if (is_active && !entity_list.empty())
 	{
+		batch.draw_rectangle(floor, barrier_color);
+
 		for (const auto& entity : entity_list)
 		{
 			batch.draw_rectangle(entity.rect, entity.color);
@@ -29,8 +33,6 @@ void Ground::Render(PrimitiveBatch& batch)
 
 	if (!barriers.empty())
 	{
-		batch.draw_rectangle(floor, barrier_color);
-
 		for (const auto& barrier : barriers)
 		{
 			batch.draw_rectangle(barrier.rect, barrier.color);
@@ -50,9 +52,7 @@ void Ground::Update(float deltatime)
 	if (wait_time > add_barrier_time)
 	{
 		wait_time = 0;
-		{
-			AddBarriers(barrierSize, false, 0, barrier_color, { -500, 0 });
-		}
+		AddBarriers(barrierSize, false, 0, barrier_color, m_Speed);
 	}
 }
 
@@ -71,29 +71,21 @@ sf::FloatRect Ground::Get_barrier(int index)
 	else return {0,0,0,0};
 }
 
-int Ground::Get_barrier_quantaty()
+int Ground::Get_Barrier_Quantity()
 {
-	return static_cast<int>( barriers.size());
+	return static_cast<int>(barriers.size());
 }
 
 void Ground::Move(float deltatime)
 {
 	for (auto& entity : entity_list)
 	{
-		entity.rect.left += deltatime * entity.speed.x;
-		if (entity.rect.left + entity.rect.width < 0)
-		{
-			entity.rect.left = screen_width;
-		}
+		MoveToLeft(entity, deltatime);
 	}
 
 	for (auto& barrier : barriers)
 	{
-		barrier.rect.left += deltatime * barrier.speed.x;
-		if (barrier.rect.left + barrier.rect.width < 0)
-		{
-			barrier.rect.left = screen_width;
-		}
+		MoveToLeft(barrier, deltatime);
 	}
 }
 

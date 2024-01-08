@@ -3,10 +3,10 @@
 
 class Ground : public Entity
 {
-	const sf::FloatRect floor = { 0,550,1280,15 };
-	const sf::FloatRect barrierSize = { 1200,450,50,100 };
+	const sf::FloatRect floor = { 0.0f, 550.0f, 1280.0f, 15.0f };
+	const sf::FloatRect barrierSize = { 1200.0f, 450.0f, 50.0f, 100.0f };
 	const sf::Color barrier_color = { 200,200,200 };
-
+	const sf::Vector2f m_Speed = { -400.0f, 0.0f };
 	std::vector <Rect_entity> barriers;
 	bool is_active;
 	float add_barrier_time;
@@ -22,5 +22,5 @@ public:
 	void Update(float deltatime) override;
 	void Clear() override;
 	sf::FloatRect Get_barrier(int index);
-	int Get_barrier_quantaty();
+	int Get_Barrier_Quantity();
 };

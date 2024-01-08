@@ -15,7 +15,7 @@ protected:
 		bool is_hollow = true;
 		float thickness = 1.0f;
 		sf::Color color = sf::Color::Red;
-		sf::Vector2f speed = { 0.0f, 0.0f };
+		sf::Vector2f m_Speed = { 0.0f, 0.0f };
 	};
 
 private:
