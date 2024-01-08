@@ -1,4 +1,4 @@
-#include"parallax_layer.h"
+#include "parallax_layer.h"
 
 void Layer::Setup(const LayerSetupParams& params)
 {
@@ -23,10 +23,6 @@ void Layer::Move(float deltatime)
 {
     for (auto& entity : entity_list)
     {
-        entity.rect.left += deltatime * entity.speed.x;
-        if (entity.rect.left < 0 || entity.rect.left + entity.rect.width < 0)
-        {
-            entity.rect.left = screen_width;
-        }
+        MoveToLeft(entity, deltatime);
     }
 }

@@ -66,7 +66,7 @@ void runner::Game::Update(float deltatime)
 {
    //sf::FloatRect temp = player.get_rect();
     std::vector<sf::FloatRect>temp;
-   int quantaty= ground.get_barrier_quantaty();
+    int quantaty= ground.get_barrier_quantaty();
     for (int i = 0; i < quantaty; i++)
     {
         temp.push_back(ground.get_barrier(i));
@@ -115,8 +115,6 @@ void runner::Game::jump()
 {
     player.jump();
 }
-
-
 
 void runner::Game::Setup()
 {

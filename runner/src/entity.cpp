@@ -1,4 +1,4 @@
-#include"entity.h"
+#include "entity.h"
 
 void Entity::Move(float deltatime)
 {
@@ -15,6 +15,15 @@ void Entity::Move(float deltatime)
 		{
 			entity.speed.y *= -1;
 		}
+	}
+}
+
+void Entity::MoveToLeft(Rect_entity& entity, float deltatime)
+{
+	entity.rect.left += deltatime * entity.speed.x;
+	if (entity.rect.left < 0 || entity.rect.left + entity.rect.width < 0)
+	{
+		entity.rect.left = screen_width;
 	}
 }
 
