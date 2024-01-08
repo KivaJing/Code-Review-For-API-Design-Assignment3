@@ -62,7 +62,7 @@ void Ground::Clear()
 	barriers.clear();
 }
 
-sf::FloatRect Ground::get_barrier(int index)
+sf::FloatRect Ground::Get_barrier(int index)
 {
 	if (index <= barriers.size())
 	{
@@ -71,7 +71,7 @@ sf::FloatRect Ground::get_barrier(int index)
 	else return {0,0,0,0};
 }
 
-int Ground::get_barrier_quantaty()
+int Ground::Get_barrier_quantaty()
 {
 	return static_cast<int>( barriers.size());
 }

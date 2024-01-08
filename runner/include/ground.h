@@ -21,6 +21,6 @@ public:
 	void Render(PrimitiveBatch& batch) override;
 	void Update(float deltatime) override;
 	void Clear() override;
-	sf::FloatRect get_barrier(int index);
-	int get_barrier_quantaty();
+	sf::FloatRect Get_barrier(int index);
+	int Get_barrier_quantaty();
 };

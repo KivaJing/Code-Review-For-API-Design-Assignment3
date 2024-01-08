@@ -9,6 +9,7 @@ void runner::Game::end_screen(PrimitiveBatch& batch)
 {
 }
 
+
 void runner::Game::end()
 {
    
@@ -32,14 +33,12 @@ void runner::Game::end()
     score = 0;
 }
 
-void runner::Game::start()
+void runner::Game::start(const sf::Texture& texture1, const sf::Texture& texture2)
 {
-   
     if (!started)
     {
-    started = true;
-    Setup();
-
+        started = true;
+        Setup(texture1, texture2);
     }
     
     text.Clear();
@@ -48,17 +47,14 @@ void runner::Game::start()
 
 void runner::Game::reset()
 {
-   
     if (!started && !ended)
     {
-    ended = false;
-    text.Clear();
-    text.add_text("SIMPLE DINO RUNNER", {20,200 }, 4);
-    text.add_text("press s to start", { 350,350 }, 2);
+        ended = false;
+        text.Clear();
+        text.add_text("SIMPLE DINO RUNNER", { 20, 200 }, 4);
+        text.add_text("press s to start", { 350, 350 }, 2);
    
-    text.set_score(0);
-
-
+        text.set_score(0);
     }
 }
 
@@ -68,7 +64,7 @@ void runner::Game::Update(float deltatime)
     int quantaty = ground.Get_barrier_quantaty();
     for (int i = 0; i < quantaty; i++)
     {
-        temp.push_back(ground.get_barrier(i));
+        temp.push_back(ground.Get_barrier(i));
     }
 
     layer.Update(deltatime);
@@ -84,8 +80,8 @@ void runner::Game::Update(float deltatime)
 
     for (int i = 0; i < quantaty; i++)
     {
-        bool collided = collision.collision(temp[i], ground.get_barrier(i), player.get_rect());
-        if (collided && ground.get_barrier(i).left != 1280)
+        bool collided = collision.collision(temp[i], ground.Get_barrier(i), player.GetRect());
+        if (collided && ground.Get_barrier(i).left != 1280)
         {
             end();
             started = ended = false; 
@@ -109,17 +105,17 @@ void runner::Game::render_toplayer(sf::RenderTarget& target)
     }
 }
 
-void runner::Game::jump()
+void runner::Game::Jump()
 {
-    player.jump();
+    player.Jump();
 }
 
-void runner::Game::Setup()
+void runner::Game::Setup(const sf::Texture& texture1, const sf::Texture& texture2)
 {
     layer.Setup({ 20,120,50,150,150, false });
     closerLayer.Setup({ 50,250,100,300,250, true });
     ground.Setup();
-    player.Setup();
+    player.Setup(texture1, texture2);
 }
 
 long runner::Game::get_score()

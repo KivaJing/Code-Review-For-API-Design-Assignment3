@@ -48,12 +48,14 @@
     <IntDir>..\build\$(ProjectName)\$(Configuration.toLower())\</IntDir>
     <TargetName>$(ProjectName).$(Configuration.toLower())</TargetName>
     <LinkIncremental>false</LinkIncremental>
+    <CodeAnalysisRuleSet>CppCoreCheckRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>..\build\</OutDir>
     <IntDir>..\build\$(ProjectName)\$(Configuration.toLower())\</IntDir>
     <TargetName>$(ProjectName).$(Configuration.toLower())</TargetName>
     <LinkIncremental>false</LinkIncremental>
+    <CodeAnalysisRuleSet>CppCoreCheckRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -102,7 +104,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Animator.cpp" />
     <ClCompile Include="src\application.cpp" />
+    <ClCompile Include="src\AssetManager.cpp" />
     <ClCompile Include="src\batch.cpp" />
     <ClCompile Include="src\collision.cpp" />
     <ClCompile Include="src\entity.cpp" />
@@ -114,6 +118,8 @@
     <ClCompile Include="src\text.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Animator.h" />
+    <ClInclude Include="include\AssetManager.h" />
     <ClInclude Include="include\player.h" />
     <ClInclude Include="include\application.hpp" />
     <ClInclude Include="include\batch.hpp" />

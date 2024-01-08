@@ -1,33 +1,25 @@
 #pragma once
 #include "collision.h"
 #include "entity.h"
+#include "Animator.h"
+
 class Player : public Entity
 {
-	sf::Texture frame1;
-	sf::Texture frame2;
-	sf::Vector2f position{ 200,100 };
-	
-	
-	sf::Texture current_texture;
-	float animationTimer=0;
-	float changeTime=0.2;
-	int currentFrame=1;
-	float scale = 2;
-	float jump_time = 1.5;
-	float jump_timer= 0;
-	float jump_height = 400;
-	
-	bool is_on_ground = false;
+	const float scale = 2.0f;
+	const float jump_time = 1.5f;
+	const float jump_height = 400.0f;
 
-	void animate(float deltatime);
-	
+	sf::Vector2f position{ 200,100 };	
+	float jump_timer = 0;
+	bool is_on_ground = false;
+	Animator anim;
+
 public:
-	void Setup();
-	void Render(PrimitiveBatch& batch);//not used
+	void Setup(const sf::Texture& texture1, const sf::Texture& texture2);
 	void Render(sf::RenderTarget& target);
 	void Update(float deltatime);
-	void jump();
-	void on_ground();
+	void Jump();
+	void Landing();
 	
-	sf::FloatRect get_rect();
+	sf::FloatRect GetRect();
 };

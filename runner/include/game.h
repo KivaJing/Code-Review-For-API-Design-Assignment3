@@ -1,7 +1,7 @@
 #pragma once
 #include "batch.hpp"
 #include "collision.h"
-#include"parallax_layer.h"
+#include "parallax_layer.h"
 #include "ground.h"
 #include "text.h"
 #include "player.h"
@@ -9,11 +9,9 @@
 
 namespace runner
 {
-	
 	class Game
 	{
 	private:
-		
 		void start_screen(PrimitiveBatch& batch);
 		void end_screen(PrimitiveBatch& batch);
 		
@@ -26,17 +24,19 @@ namespace runner
 		Ground ground;
 		Text text;
 		Player player;
+
 		long score = 0;
 		long high_score = 0;
 		void end();
-		void Setup();
+
 	public:
-		void start();
+		void Setup(const sf::Texture& texture1, const sf::Texture& texture2);
+		void start(const sf::Texture& texture1, const sf::Texture& texture2);
 		void reset();
 		void Update(float deltatime);
 		void Render(PrimitiveBatch& batch, sf::RenderTarget& target);
 		void render_toplayer(sf::RenderTarget& target);
-		void jump();
+		void Jump();
 		long get_score();
 		long get_highscore();
 	};
