@@ -31,17 +31,12 @@ namespace runner
 		void Restart();
 
 	private:
-		void on_mouse_move(const sf::Vector2f& position);
 		void on_key_pressed(const sf::Keyboard::Key key);
-		void on_key_released(const sf::Keyboard::Key key);
-		void on_button_pressed(const sf::Mouse::Button button);
-		void on_button_released(const sf::Mouse::Button button);
 
 	private:
 		sf::RenderWindow m_window;
 		PrimitiveBatch   m_batch;
 		sf::Clock        m_clock;
-		sf::Vector2f     m_mouse_position;
 		bool             m_running = true;
 		float            m_deltatime;
 		Layer            m_layer;
@@ -50,8 +45,8 @@ namespace runner
 		Player           m_player;
 		AssetManager     m_assetManager;
 		GamesStates      m_states;
-		long             m_score = 0;
-		long             m_high_score = 0;
+		int              m_score = 0;
+		int              m_high_score = 0;
 		sf::Text         menuText, startText, currentScoreText, scoreText, highScoreText, loseText, retryText;
 	};
 } // !runner
