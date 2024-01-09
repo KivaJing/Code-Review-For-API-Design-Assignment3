@@ -76,7 +76,7 @@ namespace runner
 			{
 				sf::FloatRect barrierRect = m_ground.Get_barrier(i);
 
-				if (barrierRect.left != 1280)
+				if (barrierRect.left != 1280.0f)
 				{
 					bool collided = Collide(barrierRect, barrierRect, m_player.GetRect());
 					if (collided)
