@@ -3,3 +3,7 @@ Jiaxing Cao
 press s to start
 press space to jump
 press r to restart
+
+-----------------------------------
+
+This is a refactoring project based on Jiaxing Cao's code base
