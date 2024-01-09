@@ -18,7 +18,7 @@ public:
 	{
 	}
 	void Setup(const LayerSetupParams& params);
-	void Move(float deltatime) override;
+	void Move(float m_deltatime) override;
 
 private:
 	std::random_device rd;

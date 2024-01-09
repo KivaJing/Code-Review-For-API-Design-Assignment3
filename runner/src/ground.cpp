@@ -40,14 +40,14 @@ void Ground::Render(PrimitiveBatch& batch)
 	}
 }
 
-void Ground::Update(float deltatime)
+void Ground::Update(float m_deltatime)
 {
 	if (is_active && entity_list.size())
 	{
-		Move(deltatime);
+		Move(m_deltatime);
 	}
 
-	wait_time += deltatime;
+	wait_time += m_deltatime;
 
 	if (wait_time > add_barrier_time)
 	{
@@ -76,16 +76,16 @@ int Ground::Get_Barrier_Quantity()
 	return static_cast<int>(barriers.size());
 }
 
-void Ground::Move(float deltatime)
+void Ground::Move(float m_deltatime)
 {
 	for (auto& entity : entity_list)
 	{
-		MoveToLeft(entity, deltatime);
+		MoveToLeft(entity, m_deltatime);
 	}
 
 	for (auto& barrier : barriers)
 	{
-		MoveToLeft(barrier, deltatime);
+		MoveToLeft(barrier, m_deltatime);
 	}
 }
 

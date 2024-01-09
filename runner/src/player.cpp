@@ -13,20 +13,20 @@ void Player::Render(sf::RenderTarget& target)
 	target.draw(temp);
 }
 
-void Player::Update(float deltatime)
+void Player::Update(float m_deltatime)
 {
-	anim.Animate(deltatime);
+	anim.Animate(m_deltatime);
 
 	if (jump_timer > 0)
 	{
-		jump_timer -= deltatime;
+		jump_timer -= m_deltatime;
 		if (jump_timer >= duration * 0.5f)
 		{
-			position.y -= jump_height / (duration * 0.5f) * deltatime;
+			position.y -= jump_height / (duration * 0.5f) * m_deltatime;
 		}
 		else
 		{	
-			position.y += jump_height / (duration * 0.5f) * deltatime;
+			position.y += jump_height / (duration * 0.5f) * m_deltatime;
 		}
 	}
 	else

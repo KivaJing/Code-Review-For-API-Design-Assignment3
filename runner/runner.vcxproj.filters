@@ -30,19 +30,10 @@
     <ClCompile Include="src\parallax_layer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\collision.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\ground.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\text.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\AssetManager.cpp">
@@ -68,16 +59,10 @@
     <ClInclude Include="include\collision.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\ground.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\text.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\AssetManager.h">

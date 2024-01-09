@@ -8,12 +8,12 @@ bool AssetManager::LoadFontFile(const std::string& filePath) {
     return m_font.loadFromFile(filePath);
 }
 
-sf::Text AssetManager::SetText(std::string textSentence, int size, sf::Uint32 textStyle, float positionX, float positionY)
+sf::Text AssetManager::SetText(std::string textSentence, int size, sf::Color color, float positionX, float positionY)
 {
     sf::Text text;
     text.setFont(m_font);
     text.setCharacterSize(size);
-    text.setStyle(textStyle);
+    text.setFillColor(color);
     text.setPosition(positionX, positionY);
     text.setString(textSentence);
     return text;

@@ -23,9 +23,9 @@ private:
 
 public:
 	std::vector <Rect_entity> entity_list;
-	virtual void Move(float deltatime);
-	void MoveToLeft(Rect_entity& entity, float deltatime);
-	virtual void Update(float deltatime);
+	virtual void Move(float m_deltatime);
+	void MoveToLeft(Rect_entity& entity, float m_deltatime);
+	virtual void Update(float m_deltatime);
 	virtual void Render(PrimitiveBatch& batch);
 	virtual void Add_entity(Rect_entity entity);
 	virtual void Clear();

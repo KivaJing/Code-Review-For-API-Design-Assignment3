@@ -6,9 +6,9 @@ void Animator::SetUp(const sf::Texture& frame1, const sf::Texture& frame2)
 	sprite2.setTexture(frame2);
 }
 
-void Animator::Animate(float deltatime) noexcept
+void Animator::Animate(float m_deltatime) noexcept
 {
-	animationTimer += deltatime;
+	animationTimer += m_deltatime;
 	if (animationTimer >= CHANGE_TIME)
 	{
 		animationTimer = 0;

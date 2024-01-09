@@ -3,8 +3,8 @@
 void Layer::Setup(const LayerSetupParams& params)
 {
     re.seed(rd());
-    float left = 0;
-    float top = 50;
+    float left = 0.0f;
+    float top = 50.0f;
     while (left < screen_width)
     {
         left += params.minWidth + widthRange(re) * (params.maxWidth - params.minWidth);
@@ -19,10 +19,10 @@ void Layer::Setup(const LayerSetupParams& params)
     }
 }
 
-void Layer::Move(float deltatime)
+void Layer::Move(float m_deltatime)
 {
     for (auto& entity : entity_list)
     {
-        MoveToLeft(entity, deltatime);
+        MoveToLeft(entity, m_deltatime);
     }
 }

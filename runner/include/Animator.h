@@ -13,6 +13,6 @@ class Animator
 public:
 	Animator() : animationTimer(0), isFirstFrame(true) {};
 	void SetUp(const sf::Texture& sprite1, const sf::Texture& sprite2);
-	void Animate(float deltatime) noexcept;
+	void Animate(float m_deltatime) noexcept;
 	sf::Sprite GetCurrentSprite() noexcept;
 };

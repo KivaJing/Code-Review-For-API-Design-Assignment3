@@ -1,11 +1,11 @@
 #include "entity.h"
 
-void Entity::Move(float deltatime)
+void Entity::Move(float m_deltatime)
 {
 	for (auto& entity : entity_list)
 	{
-		entity.rect.left += entity.m_Speed.x * deltatime;
-		entity.rect.top += entity.m_Speed.y * deltatime;
+		entity.rect.left += entity.m_Speed.x * m_deltatime;
+		entity.rect.top += entity.m_Speed.y * m_deltatime;
 
 		if (entity.rect.left < 0 || entity.rect.left + entity.rect.width > screen_width)
 		{
@@ -18,20 +18,20 @@ void Entity::Move(float deltatime)
 	}
 }
 
-void Entity::MoveToLeft(Rect_entity& entity, float deltatime)
+void Entity::MoveToLeft(Rect_entity& entity, float m_deltatime)
 {
-	entity.rect.left += deltatime * entity.m_Speed.x;
+	entity.rect.left += m_deltatime * entity.m_Speed.x;
 	if (entity.rect.left + entity.rect.width < 0)
 	{
 		entity.rect.left = screen_width;
 	}
 }
 
-void Entity::Update(float deltatime)
+void Entity::Update(float m_deltatime)
 {
 	if (is_active && entity_list.size())
 	{
-		Move(deltatime);
+		Move(m_deltatime);
 	}
 }
 

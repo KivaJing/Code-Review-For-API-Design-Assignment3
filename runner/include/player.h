@@ -3,7 +3,7 @@
 #include "entity.h"
 #include "Animator.h"
 
-class Player : public Entity
+class Player final: public Entity
 {
 	static constexpr float scale = 2.0f;
 	static constexpr float duration = 1.5f;
@@ -20,7 +20,7 @@ public:
 	Player() noexcept : position(200, 150), jump_timer(0), is_on_ground(true) {}
 	void Setup(const sf::Texture& sprite1, const sf::Texture& sprite2);
 	void Render(sf::RenderTarget& target);
-	void Update(float deltatime);
+	void Update(float m_deltatime);
 	void Jump() noexcept;
 	void Landing() noexcept;
 	sf::FloatRect GetRect();

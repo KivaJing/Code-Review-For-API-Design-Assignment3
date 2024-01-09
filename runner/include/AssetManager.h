@@ -12,7 +12,7 @@ public:
 	const sf::Texture& GetTexture(int index);
 	void LoadTexture(std::string name, std::string path);
 	bool LoadFontFile(const std::string& filePath);
-	sf::Text SetText(std::string textSentence, int size, sf::Uint32 textStyle, float positionX, float positionY);
+	sf::Text SetText(std::string textSentence, int size, sf::Color color, float positionX, float positionY);
 
 private:
 	sf::Font m_font;
