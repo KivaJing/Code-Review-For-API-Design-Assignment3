@@ -65,32 +65,31 @@ namespace runner
 
 		if (m_states == GamesStates::running)
 		{
-			std::vector <sf::FloatRect> temp;
-			int quantaty = m_ground.Get_Barrier_Quantity();
-			for (int i = 0; i < quantaty; i++)
-			{
-				temp.push_back(m_ground.Get_barrier(i));
-			}
-
 			m_layer.Update(m_deltatime);
 			m_closerLayer.Update(m_deltatime);
 			m_ground.Update(m_deltatime);
 			m_player.Update(m_deltatime);
 
-			m_score += static_cast<int>(10000 * m_deltatime);
-			currentScoreText = m_assetManager.SetText("score:" + std::to_string(m_score), 30, sf::Color::White, 0, 0);
+			int quantity = m_ground.Get_Barrier_Quantity();
 
-			for (int i = 0; i < quantaty; i++)
+			for (int i = 0; i < quantity; i++)
 			{
-				bool collided = Collide(temp[i], m_ground.Get_barrier(i), m_player.GetRect());
-				if (collided && m_ground.Get_barrier(i).left != 1280)
+				sf::FloatRect barrierRect = m_ground.Get_barrier(i);
+
+				if (barrierRect.left != 1280)
 				{
-					m_states = GamesStates::lose;
-					GameOver();
+					bool collided = Collide(barrierRect, barrierRect, m_player.GetRect());
+					if (collided)
+					{
+						m_states = GamesStates::lose;
+						GameOver();
+					}
 				}
 			}
+
+			m_score += static_cast<int>(10000 * m_deltatime);
+			currentScoreText = m_assetManager.SetText("score:" + std::to_string(m_score), 30, sf::Color::White, 0, 0);
 		}
-		
 		return m_running;
 	}
 
@@ -156,19 +155,19 @@ namespace runner
 		if (key == sf::Keyboard::Key::Escape) {
 			m_running = false;
 		}
-		
-		if (key == sf::Keyboard::Key::Space){
+
+		if (key == sf::Keyboard::Key::Space) {
 			m_player.Jump();
 		}
 
-		if (key == sf::Keyboard::Key::R){
-			if (m_states == GamesStates::lose){
+		if (key == sf::Keyboard::Key::R) {
+			if (m_states == GamesStates::lose) {
 				m_states = GamesStates::menu;
 			}
 		}
 
-		if (key == sf::Keyboard::Key::S){
-			if (m_states != GamesStates::running){
+		if (key == sf::Keyboard::Key::S) {
+			if (m_states != GamesStates::running) {
 				m_states = GamesStates::running;
 				Restart();
 			}

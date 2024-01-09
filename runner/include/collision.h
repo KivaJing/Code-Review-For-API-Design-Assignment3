@@ -63,7 +63,7 @@ inline bool Collide(const sf::FloatRect& A_from, const sf::FloatRect& A_to, cons
 
 	if (a_from.x > enlarged.left && a_from.x < enlarged.left + enlarged.width)
 	{
-		if (a_from.y > enlarged.top && a_from.y < enlarged.top + enlarged.width)
+		if (a_from.y > enlarged.top && a_from.y < enlarged.top + enlarged.height)
 		{
 			return true;
 		}
