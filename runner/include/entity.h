@@ -4,6 +4,8 @@
 
 class Entity
 {
+	bool is_active = true;
+
 protected:
 	static constexpr float screen_width = 1280.0f;
 	static constexpr float screen_height = 720.0f;
@@ -16,9 +18,6 @@ protected:
 		sf::Color color = sf::Color::Red;
 		sf::Vector2f m_Speed = { 0.0f, 0.0f };
 	};
-
-private:
-	bool is_active = true;
 
 public:
 	std::vector <Rect_entity> entity_list;

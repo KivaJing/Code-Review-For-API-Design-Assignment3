@@ -9,7 +9,7 @@ void Animator::SetUp(const sf::Texture& frame1, const sf::Texture& frame2)
 void Animator::Animate(float m_deltatime) noexcept
 {
 	animationTimer += m_deltatime;
-	if (animationTimer >= CHANGE_TIME)
+	if (animationTimer >= change_time)
 	{
 		animationTimer = 0;
 		currentSprite = isFirstFrame ? sprite2 : sprite1;
@@ -17,7 +17,10 @@ void Animator::Animate(float m_deltatime) noexcept
 	}
 }
 
-sf::Sprite Animator::GetCurrentSprite() noexcept
+void Animator::Render(sf::RenderTarget& target, sf::Vector2f position, float scale)
 {
-	return currentSprite;
+	currentSprite.setPosition(position);
+	currentSprite.setScale(scale, scale);
+	target.draw(currentSprite);
 }
+

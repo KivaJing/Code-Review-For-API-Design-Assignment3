@@ -7,10 +7,7 @@ void Player::Setup(const sf::Texture& sprite1, const sf::Texture& sprite2)
 
 void Player::Render(sf::RenderTarget& target)
 {
-	sf::Sprite temp = anim.GetCurrentSprite();
-	temp.setPosition(position);
-	temp.setScale(scale, scale);
-	target.draw(temp);
+	anim.Render(target, position, scale);
 }
 
 void Player::Update(float m_deltatime)

@@ -10,7 +10,6 @@ class AssetManager
 	std::unordered_map<std::string, sf::Text> m_text;
 
 public:
-	AssetManager() noexcept = default;
 	void LoadFontFile(const std::string& filePath);
 	sf::Text SetText(std::string textSentence, int size, sf::Color color, float positionX, float positionY);
 	const sf::Texture& GetTexture(std::string name);
