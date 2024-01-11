@@ -108,6 +108,7 @@
     <ClCompile Include="src\application.cpp" />
     <ClCompile Include="src\AssetManager.cpp" />
     <ClCompile Include="src\batch.cpp" />
+    <ClCompile Include="src\collision.cpp" />
     <ClCompile Include="src\entity.cpp" />
     <ClCompile Include="src\ground.cpp" />
     <ClCompile Include="src\main.cpp" />
