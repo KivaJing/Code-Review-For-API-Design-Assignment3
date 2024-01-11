@@ -19,12 +19,6 @@ sf::Text AssetManager::SetText(std::string textSentence, int size, sf::Color col
     return text;
 }
 
-int AssetManager::GetLength() noexcept
-{
-    int size = static_cast<int>(m_textures.size());
-    return size;
-}
-
 const sf::Texture& AssetManager::GetTexture(std::string name) {
     return m_textures[name];
 }

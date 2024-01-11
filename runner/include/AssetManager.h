@@ -4,17 +4,14 @@
 
 class AssetManager
 {
+	sf::Font m_font;
+
 public:
 	AssetManager() noexcept = default;
-	~AssetManager();
-
+	bool LoadFontFile(const std::string& filePath);
+	sf::Text SetText(std::string textSentence, int size, sf::Color color, float positionX, float positionY);
 	const sf::Texture& GetTexture(std::string name);
 	const sf::Texture& GetTexture(int index);
 	void LoadTexture(std::string name, std::string path);
-	bool LoadFontFile(const std::string& filePath);
-	sf::Text SetText(std::string textSentence, int size, sf::Color color, float positionX, float positionY);
-
-private:
-	sf::Font m_font;
-	int GetLength() noexcept;
+	~AssetManager();
 };
