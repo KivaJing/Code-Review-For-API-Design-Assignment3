@@ -11,10 +11,10 @@ class AssetManager
 
 public:
 	AssetManager() noexcept = default;
-	bool LoadFontFile(const std::string& filePath);
+	void LoadFontFile(const std::string& filePath);
 	sf::Text SetText(std::string textSentence, int size, sf::Color color, float positionX, float positionY);
 	const sf::Texture& GetTexture(std::string name);
 	const sf::Texture& GetTexture(int index);
 	void LoadTexture(std::string name, std::string path);
-	~AssetManager();
+	~AssetManager() noexcept;
 };

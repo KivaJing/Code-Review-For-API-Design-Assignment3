@@ -1,7 +1,14 @@
 #include "AssetManager.h"
+#include <string_view>
+#include <stdexcept>
+#include <format>
 
-bool AssetManager::LoadFontFile(const std::string& filePath) {
-    return m_font.loadFromFile(filePath);
+using namespace std::literals::string_view_literals;
+
+void AssetManager::LoadFontFile(const std::string& filePath) {
+    if (!m_font.loadFromFile(filePath)){
+        throw(std::runtime_error(std::format("Unable to load font: {}"sv, filePath)));
+    }
 }
 
 sf::Text AssetManager::SetText(std::string textSentence, int size, sf::Color color, float positionX, float positionY)
@@ -28,12 +35,14 @@ void AssetManager::LoadTexture(std::string name, std::string path) {
 
     if (texture.loadFromFile(path)) {
         m_textures[name] = texture;
-
         m_order.push_back(name);
+    }
+    else {
+        throw(std::runtime_error(std::format("Unable to load texture: {}"sv, path)));
     }
 }
 
-AssetManager::~AssetManager()
+AssetManager::~AssetManager() noexcept
 {
     m_textures.clear();
 }
