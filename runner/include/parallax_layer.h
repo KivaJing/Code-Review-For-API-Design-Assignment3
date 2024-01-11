@@ -1,7 +1,6 @@
 #pragma once
 #include "entity.h"
-#include <random>
-
+#include "RNG.h"
 struct LayerSetupParams {
 	float minWidth;
 	float maxWidth;
@@ -13,17 +12,10 @@ struct LayerSetupParams {
 
 class Layer: public Entity
 {
+	RandomNumberGenerater rng;
+	static constexpr float top = 50.0f;
+
 public:
-	Layer() noexcept : re(rd()), widthRange(0.0f, 1.0f), heightRange(0.0f, 1.0f), colorRange(0, 255)
-	{
-	}
 	void Setup(const LayerSetupParams& params);
 	void Move(float m_deltatime) override;
-
-private:
-	std::random_device rd;
-	std::default_random_engine re;
-	std::uniform_real_distribution<float> widthRange;
-	std::uniform_real_distribution<float> heightRange;
-	std::uniform_int_distribution<int> colorRange;
 };

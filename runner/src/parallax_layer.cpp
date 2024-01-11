@@ -2,20 +2,19 @@
 
 void Layer::Setup(const LayerSetupParams& params)
 {
-    re.seed(rd());
     float left = 0.0f;
-    float top = 50.0f;
+
     while (left < screen_width)
     {
-        left += params.minWidth + widthRange(re) * (params.maxWidth - params.minWidth);
-        float height = params.minHeight + heightRange(re) * (params.maxHeight - params.minHeight);
-        float width = params.minWidth + widthRange(re) * (params.maxWidth - params.minWidth);
+        float width = rng.GetRandomFloat(params.minWidth, params.maxWidth);
+        left += width;
+        float height = rng.GetRandomFloat(params.minHeight, params.maxHeight);
         sf::Color temp_color = {
-            static_cast<sf::Uint8>(colorRange(re)),
+            static_cast<sf::Uint8>(rng.GetRandomInt(0, 255)),
             255,
-            static_cast<sf::Uint8>(colorRange(re))
+            static_cast<sf::Uint8>(rng.GetRandomInt(0, 255))
         };
-        Add_entity({ { left, top - height + 500, width, height }, params.isHollow, 5, temp_color, { -params.speedX, 0 } });
+        Add_entity({ { left, top - height + 500.0f, width, height }, params.isHollow, 5, temp_color, { -params.speedX, 0 } });
     }
 }
 

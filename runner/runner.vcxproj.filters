@@ -74,5 +74,8 @@
     <ClInclude Include="include\Animator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\RNG.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

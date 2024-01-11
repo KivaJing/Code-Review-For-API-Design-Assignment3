@@ -1,5 +1,6 @@
 #pragma once
 #include "entity.h"
+#include "RNG.h"
 
 class Ground final: public Entity
 {
@@ -11,6 +12,7 @@ class Ground final: public Entity
 	bool is_active = true;
 	float add_barrier_time = 15.0f;
 	float wait_time = 0.0f;
+	RandomNumberGenerater rng;
 
 	void Move(float m_deltatime) override;
 	void AddBarriers(const sf::FloatRect& rect, bool is_hollow, const float thickness, const sf::Color& color, sf::Vector2f speed);

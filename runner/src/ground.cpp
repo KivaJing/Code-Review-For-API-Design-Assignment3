@@ -1,18 +1,14 @@
 #include "ground.h"
-#include <random>
 
 void Ground::Setup()
 {
 	sf::Vector2f position = {0.0f, 600.0f};
-	std::random_device rd;
-	std::default_random_engine re(rd());
-	std::uniform_real_distribution<float> widthDistribution(20.0f, 40.0f);
 
 	while (position.x < screen_width)
 	{
 		position.x += 100.0f;
 		float height = 10.0f;
-		float width = widthDistribution(re);
+		float width = rng.GetRandomFloat(20.0f, 40.0f);
 		Add_entity({ { position.x, position.y, width, height }, false, 0.0f, barrier_color, m_Speed });
 		Add_entity({ { position.x + 40.0f, position.y + 50.0f, width, height }, false, 0.0f, barrier_color, m_Speed });
 	}
