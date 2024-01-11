@@ -2,8 +2,8 @@
 
 namespace runner
 {
-	static const char* kPlayerFrame1ID = "player1";
-	static const char* kPlayerFrame2ID = "player2";
+	static const std::string kPlayerFrame1ID = "player1";
+	static const std::string kPlayerFrame2ID = "player2";
 
 	void Application::run()
 	{
@@ -78,7 +78,7 @@ namespace runner
 
 				if (barrierRect.left != 1280.0f)
 				{
-					bool collided = Collide(barrierRect, barrierRect, m_player.GetRect());
+					bool collided = Collision::Collide(barrierRect, barrierRect, m_player.GetRect());
 					if (collided)
 					{
 						m_states = GamesStates::lose;

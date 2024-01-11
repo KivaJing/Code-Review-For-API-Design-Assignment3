@@ -35,7 +35,7 @@ void Entity::Update(float m_deltatime)
 	}
 }
 
-void Entity::Render(PrimitiveBatch& batch)
+void Entity::Render(runner::PrimitiveBatch& batch)
 {
 	if (is_active && !entity_list.empty())
 	{

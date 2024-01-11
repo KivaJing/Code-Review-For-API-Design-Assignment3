@@ -19,7 +19,7 @@ void Ground::Setup()
 	AddBarriers(barrierSize, false, 0, barrier_color, { -400, 0 });
 }
 
-void Ground::Render(PrimitiveBatch& batch)
+void Ground::Render(runner::PrimitiveBatch& batch)
 {	
 	if (is_active && !entity_list.empty())
 	{

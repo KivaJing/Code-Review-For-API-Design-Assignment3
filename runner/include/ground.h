@@ -18,7 +18,7 @@ class Ground final: public Entity
 public:
 	Ground() noexcept: is_active(true), add_barrier_time(15), wait_time(0) {}
 	void Setup();
-	void Render(PrimitiveBatch& batch) override;
+	void Render(runner::PrimitiveBatch& batch) override;
 	void Update(float m_deltatime) override;
 	void Clear() override;
 	sf::FloatRect Get_barrier(int index);
