@@ -8,6 +8,7 @@ class RandomNumberGenerater
 
 public:
 	RandomNumberGenerater() { re.seed(rd()); }
+
 	float GetRandomFloat(float min, float max) {
 		std::uniform_real_distribution<float> distribution(min, max);
 		return distribution(re);

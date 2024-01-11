@@ -15,7 +15,7 @@ class Ground final: public Entity
 	RandomNumberGenerater rng;
 
 	void Move(float m_deltatime) override;
-	void AddBarriers(const sf::FloatRect& rect, bool is_hollow, const float thickness, const sf::Color& color, sf::Vector2f speed);
+	void AddBarriers(Rect_entity barrier);
 
 public:
 	void Setup();

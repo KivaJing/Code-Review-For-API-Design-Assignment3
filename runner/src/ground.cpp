@@ -12,7 +12,7 @@ void Ground::Setup()
 		Add_entity({ { position.x, position.y, width, height }, false, 0.0f, barrier_color, m_Speed });
 		Add_entity({ { position.x + 40.0f, position.y + 50.0f, width, height }, false, 0.0f, barrier_color, m_Speed });
 	}
-	AddBarriers(barrierSize, false, 0, barrier_color, { -400, 0 });
+	AddBarriers({ barrierSize, false, 0, barrier_color, { -400, 0 } });
 }
 
 void Ground::Render(runner::PrimitiveBatch& batch)
@@ -48,7 +48,7 @@ void Ground::Update(float m_deltatime)
 	if (wait_time > add_barrier_time)
 	{
 		wait_time = 0;
-		AddBarriers(barrierSize, false, 0, barrier_color, m_Speed);
+		AddBarriers({barrierSize, false, 0, barrier_color, m_Speed});
 	}
 }
 
@@ -85,7 +85,7 @@ void Ground::Move(float m_deltatime)
 	}
 }
 
-void Ground::AddBarriers(const sf::FloatRect& rect, bool is_hollow, const float thickness, const sf::Color& color, sf::Vector2f speed)
+void Ground::AddBarriers(Rect_entity barrier)
 {
-	barriers.emplace_back(rect, is_hollow, thickness, color, speed);
+	barriers.emplace_back(barrier.rect, barrier.is_hollow, barrier.thickness, barrier.color, barrier.m_Speed);
 }

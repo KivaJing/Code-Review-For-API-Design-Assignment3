@@ -55,8 +55,7 @@ void Entity::Render(runner::PrimitiveBatch& batch)
 
 void Entity::Add_entity(Rect_entity entity)
 {
-	Rect_entity temp{entity.rect, entity.is_hollow, entity.thickness, entity.color, entity.m_Speed};
-	entity_list.push_back(temp);
+	entity_list.emplace_back(entity.rect, entity.is_hollow, entity.thickness, entity.color, entity.m_Speed);
 }
 
 void Entity::Clear()
