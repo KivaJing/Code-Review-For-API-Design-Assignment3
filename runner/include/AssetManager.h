@@ -5,6 +5,9 @@
 class AssetManager
 {
 	sf::Font m_font;
+	std::unordered_map<std::string, sf::Texture> m_textures;
+	std::vector<std::string> m_order;
+	std::unordered_map<std::string, sf::Text> m_text;
 
 public:
 	AssetManager() noexcept = default;

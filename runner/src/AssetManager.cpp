@@ -1,9 +1,5 @@
 #include "AssetManager.h"
 
-std::unordered_map<std::string, sf::Texture> m_textures;
-std::vector<std::string> m_order;
-std::unordered_map<std::string, sf::Text> m_text;
-
 bool AssetManager::LoadFontFile(const std::string& filePath) {
     return m_font.loadFromFile(filePath);
 }
