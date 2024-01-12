@@ -1,15 +1,5 @@
 #include "player.h"
 
-//Player::Player()
-//{
-//
-//}
-//
-//void Player::Setup(const sf::Texture& sprite1, const sf::Texture& sprite2)
-//{
-//	anim.SetUp(sprite1, sprite2);
-//}
-
 void Player::Render(sf::RenderTarget& target)
 {
 	anim.Render(target, position, scale);

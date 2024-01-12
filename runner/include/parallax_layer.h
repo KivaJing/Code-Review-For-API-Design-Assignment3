@@ -1,6 +1,7 @@
 #pragma once
 #include "entity.h"
 #include "RNG.h"
+
 struct LayerSetupParams {
 	float minWidth;
 	float maxWidth;
@@ -16,6 +17,6 @@ class Layer: public Entity
 	static constexpr float top = 50.0f;
 
 public:
-	void Setup(const LayerSetupParams& params);
-	void Move(float m_deltatime) override;
+	Layer();
+	void GenerateBackground(const LayerSetupParams& params);
 };

@@ -4,21 +4,11 @@ void Entity::Move(float m_deltatime)
 {
 	for (auto& entity : entity_list)
 	{
-		entity.rect.left += entity.m_Speed.x * m_deltatime;
-		entity.rect.top += entity.m_Speed.y * m_deltatime;
-
-		if (entity.rect.left < 0 || entity.rect.left + entity.rect.width > screen_width)
-		{
-			entity.m_Speed.x *= -1;
-		}
-		if (entity.rect.top < 0 || entity.rect.top + entity.rect.height > screen_height)
-		{
-			entity.m_Speed.y *= -1;
-		}
+		SingleEntityMove(entity, m_deltatime);
 	}
 }
 
-void Entity::MoveToLeft(Rect_entity& entity, float m_deltatime)
+void Entity::SingleEntityMove(Rect_entity& entity, float m_deltatime)
 {
 	entity.rect.left += m_deltatime * entity.m_Speed.x;
 	if (entity.rect.left + entity.rect.width < 0)

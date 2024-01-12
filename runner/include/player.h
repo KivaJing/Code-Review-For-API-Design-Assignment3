@@ -16,7 +16,6 @@ class Player final: public Entity
 	Animator anim{};
 
 public:
-	//void Setup(const sf::Texture& sprite1, const sf::Texture& sprite2);
 	void Render(sf::RenderTarget& target);
 	void Update(float m_deltatime);
 	void Jump() noexcept;

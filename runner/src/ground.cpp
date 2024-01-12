@@ -1,6 +1,6 @@
 #include "ground.h"
 
-void Ground::Setup()
+Ground::Ground()
 {
 	sf::Vector2f position = {0.0f, 600.0f};
 
@@ -71,12 +71,12 @@ void Ground::Move(float m_deltatime)
 {
 	for (auto& entity : entity_list)
 	{
-		MoveToLeft(entity, m_deltatime);
+		SingleEntityMove(entity, m_deltatime);
 	}
 
 	for (auto& barrier : barriers)
 	{
-		MoveToLeft(barrier, m_deltatime);
+		SingleEntityMove(barrier, m_deltatime);
 	}
 }
 

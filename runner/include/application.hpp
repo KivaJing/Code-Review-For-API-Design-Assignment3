@@ -19,12 +19,14 @@ namespace runner
 	class Application final
 	{
 	public:
-		Application() = default;
+		Application() {
+			m_ground = std::make_unique<Ground>();
+			m_layer = std::make_unique<Layer>();
+		};
 		void run();
 
 	private:
 		bool enter();
-		void Restart();
 		void exit();
 		void CheckCollision();
 		bool Update();
@@ -40,10 +42,9 @@ namespace runner
 		sf::Clock        m_clock;
 		bool             m_running = true;
 		float            m_deltatime = 0.0f;
-		Layer            m_layer;
-		Layer            m_closerLayer;
-		Ground           m_ground;
-		Player           m_player;
+		std::unique_ptr<Ground> m_ground{};
+		std::unique_ptr<Layer> m_layer{};
+		Player           m_player{};
 		TextManager      m_textManager;
 		GamesStates      m_states;
 		int              m_score = 0;

@@ -18,7 +18,7 @@ class Ground final: public Entity
 	void AddBarriers(Rect_entity barrier);
 
 public:
-	void Setup();
+	Ground();
 	void Render(runner::PrimitiveBatch& batch) override;
 	void Update(float m_deltatime) override;
 	void Clear() override;

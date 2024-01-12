@@ -22,7 +22,7 @@ protected:
 public:
 	std::vector <Rect_entity> entity_list;
 	virtual void Move(float m_deltatime);
-	void MoveToLeft(Rect_entity& entity, float m_deltatime);
+	void SingleEntityMove(Rect_entity& entity, float m_deltatime);
 	virtual void Update(float m_deltatime);
 	virtual void Render(runner::PrimitiveBatch& batch);
 	virtual void Add_entity(Rect_entity entity);
