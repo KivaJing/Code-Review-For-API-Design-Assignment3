@@ -1,9 +1,20 @@
 #include "Animator.h"
+#include <string_view>
+#include <stdexcept>
+#include <format>
 
-void Animator::SetUp(const sf::Texture& frame1, const sf::Texture& frame2)
+using namespace std::literals::string_view_literals;
+
+Animator::Animator()
 {
-	sprite1.setTexture(frame1);
-	sprite2.setTexture(frame2);
+	if (!sprite1.loadFromFile("assets/playerFrame1.png")) {
+
+		throw(std::runtime_error(std::format("Unable to load texture: {}"sv)));
+	}
+	if (!sprite2.loadFromFile("assets/playerFrame2.png")) {
+
+		throw(std::runtime_error(std::format("Unable to load texture: {}"sv)));
+	}
 }
 
 void Animator::Animate(float m_deltatime) noexcept
@@ -19,8 +30,10 @@ void Animator::Animate(float m_deltatime) noexcept
 
 void Animator::Render(sf::RenderTarget& target, sf::Vector2f position, float scale)
 {
-	currentSprite.setPosition(position);
-	currentSprite.setScale(scale, scale);
-	target.draw(currentSprite);
+	sf::Sprite temp;
+	temp.setTexture(currentSprite);
+	temp.setPosition(position);
+	temp.setScale(scale, scale);
+	target.draw(temp);
 }
 

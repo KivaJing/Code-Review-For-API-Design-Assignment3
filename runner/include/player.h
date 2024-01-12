@@ -13,10 +13,10 @@ class Player final: public Entity
 	sf::Vector2f position = {200.0f, 150.0f};
 	float jump_timer = 0;
 	bool is_on_ground = true;
-	Animator anim;
+	Animator anim{};
 
 public:
-	void Setup(const sf::Texture& sprite1, const sf::Texture& sprite2);
+	//void Setup(const sf::Texture& sprite1, const sf::Texture& sprite2);
 	void Render(sf::RenderTarget& target);
 	void Update(float m_deltatime);
 	void Jump() noexcept;

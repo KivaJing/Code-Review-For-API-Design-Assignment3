@@ -2,9 +2,6 @@
 
 namespace runner
 {
-	static const std::string kPlayerFrame1ID = "player1";
-	static const std::string kPlayerFrame2ID = "player2";
-
 	void Application::run()
 	{
 		const sf::VideoMode mode{ 1280, 720 };
@@ -41,14 +38,12 @@ namespace runner
 
 	bool Application::enter()
 	{
-		m_assetManager.LoadTexture(kPlayerFrame1ID, "assets/playerFrame1.png");
-		m_assetManager.LoadTexture(kPlayerFrame2ID, "assets/playerFrame2.png");
-		m_assetManager.LoadFontFile("assets/fonts.ttf");
+		m_textManager.LoadFontFile("assets/fonts.ttf");
 
-		menuText = m_assetManager.SetText("SIMPLE DINO RUNNER", 120, sf::Color::Black, 20, 200);
-		startText = m_assetManager.SetText("Press S to start", 60, sf::Color::Black, 350, 350);
-		loseText = m_assetManager.SetText("press r to return to home page", 30, sf::Color::Black, 20, 450);
-		retryText = m_assetManager.SetText("press s to return to retry", 30, sf::Color::Black, 20, 500);
+		menuText = m_textManager.SetText("SIMPLE DINO RUNNER", 120, sf::Color::Black, 20, 200);
+		startText = m_textManager.SetText("Press S to start", 60, sf::Color::Black, 350, 350);
+		loseText = m_textManager.SetText("press r to return to home page", 30, sf::Color::Black, 20, 450);
+		retryText = m_textManager.SetText("press s to return to retry", 30, sf::Color::Black, 20, 500);
 
 		Restart();
 		return true;
@@ -60,7 +55,6 @@ namespace runner
 		m_layer.Setup({ 20,120,50,150,150, false });
 		m_closerLayer.Setup({ 50,250,100,300,250, true });
 		m_ground.Setup();
-		m_player.Setup(m_assetManager.GetTexture(kPlayerFrame1ID), m_assetManager.GetTexture(kPlayerFrame2ID));
 	}
 
 	void Application::exit()
@@ -96,7 +90,7 @@ namespace runner
 			m_player.Update(m_deltatime);
 			CheckCollision();
 			m_score += static_cast<int>(10000 * m_deltatime);
-			currentScoreText = m_assetManager.SetText("score:" + std::to_string(m_score), 30, sf::Color::White, 0, 0);
+			currentScoreText = m_textManager.SetText("score:" + std::to_string(m_score), 30, sf::Color::White, 0, 0);
 		}
 		return m_running;
 	}
@@ -104,11 +98,11 @@ namespace runner
 	void Application::GameOver()
 	{
 		if (m_states == GamesStates::lose){
-			scoreText = m_assetManager.SetText("score:" + std::to_string(m_score), 60, sf::Color::Black, 20, 300);
+			scoreText = m_textManager.SetText("score:" + std::to_string(m_score), 60, sf::Color::Black, 20, 300);
 			if (m_score > m_high_score){
 				m_high_score = m_score;
 			}
-			highScoreText = m_assetManager.SetText("high score:" + std::to_string(m_high_score), 60, sf::Color::Black, 20, 200);
+			highScoreText = m_textManager.SetText("high score:" + std::to_string(m_high_score), 60, sf::Color::Black, 20, 200);
 		}
 	}
 

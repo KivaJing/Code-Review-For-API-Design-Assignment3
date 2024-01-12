@@ -44,7 +44,7 @@ namespace runner
 		Layer            m_closerLayer;
 		Ground           m_ground;
 		Player           m_player;
-		AssetManager     m_assetManager;
+		TextManager      m_textManager;
 		GamesStates      m_states;
 		int              m_score = 0;
 		int              m_high_score = 0;
