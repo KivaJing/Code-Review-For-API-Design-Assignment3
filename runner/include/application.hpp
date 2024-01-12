@@ -19,7 +19,7 @@ namespace runner
 	class Application final
 	{
 	public:
-		Application() : m_running(true), m_deltatime(0.0f), m_states(GamesStates::menu), m_score(0), m_high_score(0) {};
+		Application() = default;
 		void run();
 
 	private:
@@ -38,16 +38,16 @@ namespace runner
 		sf::RenderWindow m_window;
 		PrimitiveBatch   m_batch;
 		sf::Clock        m_clock;
-		bool             m_running;
-		float            m_deltatime;
+		bool             m_running = true;
+		float            m_deltatime = 0.0f;
 		Layer            m_layer;
 		Layer            m_closerLayer;
 		Ground           m_ground;
 		Player           m_player;
 		AssetManager     m_assetManager;
 		GamesStates      m_states;
-		int              m_score;
-		int              m_high_score;
+		int              m_score = 0;
+		int              m_high_score = 0;
 		sf::Text         menuText, startText, currentScoreText, scoreText, highScoreText, loseText, retryText;
 	};
 } // !runner

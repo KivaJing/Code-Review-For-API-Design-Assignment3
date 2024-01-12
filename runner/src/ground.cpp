@@ -17,22 +17,16 @@ void Ground::Setup()
 
 void Ground::Render(runner::PrimitiveBatch& batch)
 {	
-	if (is_active && !entity_list.empty())
-	{
-		batch.draw_rectangle(floor, barrier_color);
+	batch.draw_rectangle(floor, barrier_color);
 
-		for (const auto& entity : entity_list)
-		{
-			batch.draw_rectangle(entity.rect, entity.color);
-		}
+	for (const auto& entity : entity_list)
+	{
+		batch.draw_rectangle(entity.rect, entity.color);
 	}
 
-	if (!barriers.empty())
+	for (const auto& barrier : barriers)
 	{
-		for (const auto& barrier : barriers)
-		{
-			batch.draw_rectangle(barrier.rect, barrier.color);
-		}
+		batch.draw_rectangle(barrier.rect, barrier.color);
 	}
 }
 
@@ -56,6 +50,7 @@ void Ground::Clear()
 {
 	entity_list.clear();
 	barriers.clear();
+	wait_time = 0;
 }
 
 sf::FloatRect Ground::Get_barrier(int index)
