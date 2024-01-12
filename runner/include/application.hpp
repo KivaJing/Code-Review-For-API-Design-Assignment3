@@ -24,11 +24,12 @@ namespace runner
 
 	private:
 		bool enter();
+		void Restart();
 		void exit();
+		void CheckCollision();
 		bool Update();
 		void Render();
 		void GameOver();
-		void Restart();
 
 	private:
 		void on_key_pressed(const sf::Keyboard::Key key);

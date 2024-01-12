@@ -54,8 +54,34 @@ namespace runner
 		return true;
 	}
 
+	void Application::Restart()
+	{
+		m_score = 0;
+		m_layer.Setup({ 20,120,50,150,150, false });
+		m_closerLayer.Setup({ 50,250,100,300,250, true });
+		m_ground.Setup();
+		m_player.Setup(m_assetManager.GetTexture(kPlayerFrame1ID), m_assetManager.GetTexture(kPlayerFrame2ID));
+	}
+
 	void Application::exit()
 	{
+	}
+
+	void Application::CheckCollision()
+	{
+		int quantity = m_ground.Get_Barrier_Quantity();
+
+		for (int i = 0; i < quantity; i++) {
+			sf::FloatRect barrierRect = m_ground.Get_barrier(i);
+
+			if (barrierRect.left != 1280.0f) {
+				bool collided = Collision::Collide(barrierRect, barrierRect, m_player.GetRect());
+				if (collided) {
+					m_states = GamesStates::lose;
+					GameOver();
+				}
+			}
+		}
 	}
 
 	bool Application::Update()
@@ -68,19 +94,7 @@ namespace runner
 			m_closerLayer.Update(m_deltatime);
 			m_ground.Update(m_deltatime);
 			m_player.Update(m_deltatime);
-
-			int quantity = m_ground.Get_Barrier_Quantity();
-			for (int i = 0; i < quantity; i++){
-				sf::FloatRect barrierRect = m_ground.Get_barrier(i);
-
-				if (barrierRect.left != 1280.0f){
-					bool collided = Collision::Collide(barrierRect, barrierRect, m_player.GetRect());
-					if (collided){
-						m_states = GamesStates::lose;
-						GameOver();
-					}
-				}
-			}
+			CheckCollision();
 			m_score += static_cast<int>(10000 * m_deltatime);
 			currentScoreText = m_assetManager.SetText("score:" + std::to_string(m_score), 30, sf::Color::White, 0, 0);
 		}
@@ -96,15 +110,6 @@ namespace runner
 			}
 			highScoreText = m_assetManager.SetText("high score:" + std::to_string(m_high_score), 60, sf::Color::Black, 20, 200);
 		}
-	}
-
-	void Application::Restart()
-	{
-		m_score = 0;
-		m_layer.Setup({ 20,120,50,150,150, false });
-		m_closerLayer.Setup({ 50,250,100,300,250, true });
-		m_ground.Setup();
-		m_player.Setup(m_assetManager.GetTexture(kPlayerFrame1ID), m_assetManager.GetTexture(kPlayerFrame2ID));
 	}
 
 	void Application::Render()
