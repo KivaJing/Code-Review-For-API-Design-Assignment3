@@ -7,7 +7,7 @@
 
 using namespace std::literals::string_view_literals;
 
-Animator::Animator()
+Animator::Animator() noexcept
 {
 	try {
 		if (!sprite1.loadFromFile("assets/playerFrame1.png")) {
@@ -23,7 +23,7 @@ Animator::Animator()
 
 }
 
-void Animator::Animate(float m_deltatime) noexcept
+void Animator::Animate(float m_deltatime)
 {
 	animationTimer += m_deltatime;
 	if (animationTimer >= change_time)

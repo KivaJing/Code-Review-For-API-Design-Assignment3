@@ -27,6 +27,6 @@ public:
 	void Render(runner::PrimitiveBatch& batch);
 	void Update(float m_deltatime);
 	void Clear();
-	sf::FloatRect Get_barrier(int index);
-	int Get_Barrier_Quantity();
+	sf::FloatRect GetBarrier(int index);
+	int GetBarrierQuantity() noexcept;
 };

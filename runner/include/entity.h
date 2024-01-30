@@ -19,7 +19,7 @@ class SingleEntity
 public:
 	Rect_entity entity;
 
-	void Move(float m_deltatime);
+	void Move(float m_deltatime) noexcept;
 	void Update(float m_deltatime);
 	void Render(runner::PrimitiveBatch& batch) const;
 };
@@ -33,7 +33,7 @@ public:
 	static constexpr float screen_width = 1280.0f;
 	static constexpr float screen_height = 720.0f;
 	void AddEntity(const Rect_entity& entity);
-	void ClearEntities();
+	void ClearEntities() noexcept;
 	void UpdateEntities(float m_deltatime);
 	void RenderEntities(runner::PrimitiveBatch& batch);
 };

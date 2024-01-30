@@ -5,7 +5,7 @@ void Player::Render(sf::RenderTarget& target)
 	anim.Render(target, position, scale);
 }
 
-void Player::Update(float m_deltatime)
+void Player::Update(float m_deltatime) noexcept
 {
 	anim.Animate(m_deltatime);
 

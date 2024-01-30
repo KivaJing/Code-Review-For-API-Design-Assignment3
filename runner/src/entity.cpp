@@ -1,6 +1,6 @@
 #include "entity.h"
 
-void SingleEntity::Move(float m_deltatime)
+void SingleEntity::Move(float m_deltatime) noexcept
 {
     entity.rect.left += m_deltatime * entity.m_Speed.x;
     if (entity.rect.left + entity.rect.width < 0)
@@ -31,7 +31,7 @@ void EntityManager::AddEntity(const Rect_entity& entity)
     entity_list.emplace_back(entity);
 }
 
-void EntityManager::ClearEntities()
+void EntityManager::ClearEntities() noexcept
 {
     entity_list.clear();
 }

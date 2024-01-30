@@ -67,7 +67,7 @@ void Ground::Clear()
 	entityManager.ClearEntities();
 }
 
-sf::FloatRect Ground::Get_barrier(int index)
+sf::FloatRect Ground::GetBarrier(int index)
 {
 	if (index <= barriers.size()){
 		return barriers[index].rect;
@@ -77,7 +77,7 @@ sf::FloatRect Ground::Get_barrier(int index)
 	}
 }
 
-int Ground::Get_Barrier_Quantity()
+int Ground::GetBarrierQuantity() noexcept
 {
 	return static_cast<int>(barriers.size());
 }

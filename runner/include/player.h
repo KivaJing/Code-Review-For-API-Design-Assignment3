@@ -15,7 +15,7 @@ class Player
 
 public:
 	void Render(sf::RenderTarget& target);
-	void Update(float m_deltatime);
+	void Update(float m_deltatime) noexcept;
 	void Jump() noexcept;
 	void Landing() noexcept;
 	sf::FloatRect GetRect();

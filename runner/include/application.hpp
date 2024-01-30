@@ -24,7 +24,7 @@ namespace runner
 
 	private:
 		bool enter();
-		void exit();
+		void exit() noexcept;
 		void CheckCollision();
 		bool Update();
 		void Render();
@@ -39,11 +39,11 @@ namespace runner
 		sf::Clock        m_clock;
 		bool             m_running = true;
 		float            m_deltatime = 0.0f;
-		Ground           m_ground;
-		Layer            m_layer;
+		Ground           m_ground{};
+		Layer            m_layer{};
 		Player           m_player{};
-		TextManager      m_textManager;
-		GamesState       m_state;
+		TextManager      m_textManager{};
+		GamesState       m_state{};
 		int              m_score = 0;
 		int              m_high_score = 0;
 		sf::Text         menuText, startText, currentScoreText, scoreText, highScoreText, loseText, retryText;

@@ -46,16 +46,16 @@ namespace runner
 		return true;
 	}
 
-	void Application::exit()
+	void Application::exit() noexcept
 	{
 	}
 
 	void Application::CheckCollision()
 	{
-		int quantity = m_ground.Get_Barrier_Quantity();
+		int quantity = m_ground.GetBarrierQuantity();
 
 		for (int i = 0; i < quantity; i++) {
-			sf::FloatRect barrierRect = m_ground.Get_barrier(i);
+			sf::FloatRect barrierRect = m_ground.GetBarrier(i);
 
 			if (barrierRect.left != 1280.0f) {
 				bool collided = Collision::Collide(barrierRect, barrierRect, m_player.GetRect());
