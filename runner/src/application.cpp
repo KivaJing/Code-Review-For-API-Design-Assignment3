@@ -52,15 +52,15 @@ namespace runner
 
 	void Application::CheckCollision()
 	{
-		int quantity = m_ground->Get_Barrier_Quantity();
+		int quantity = m_ground.Get_Barrier_Quantity();
 
 		for (int i = 0; i < quantity; i++) {
-			sf::FloatRect barrierRect = m_ground->Get_barrier(i);
+			sf::FloatRect barrierRect = m_ground.Get_barrier(i);
 
 			if (barrierRect.left != 1280.0f) {
 				bool collided = Collision::Collide(barrierRect, barrierRect, m_player.GetRect());
 				if (collided) {
-					m_states = GamesStates::lose;
+					m_state = GamesState::lose;
 					GameOver();
 				}
 			}
@@ -72,9 +72,9 @@ namespace runner
 		m_deltatime = m_clock.restart().asSeconds();
 		m_window.setTitle("score:" + std::to_string(m_score));
 
-		if (m_states == GamesStates::running){
-			m_layer->Update(m_deltatime);
-			m_ground->Update(m_deltatime);
+		if (m_state == GamesState::running){
+			m_layer.UpdateEntities(m_deltatime);
+			m_ground.Update(m_deltatime);
 			m_player.Update(m_deltatime);
 			CheckCollision();
 			m_score += static_cast<int>(10000 * m_deltatime);
@@ -85,7 +85,7 @@ namespace runner
 
 	void Application::GameOver()
 	{
-		if (m_states == GamesStates::lose){
+		if (m_state == GamesState::lose){
 			scoreText = m_textManager.SetText("score:" + std::to_string(m_score), 60, sf::Color::Black, 20, 300);
 			if (m_score > m_high_score){
 				m_high_score = m_score;
@@ -99,23 +99,23 @@ namespace runner
 		m_batch.Clear();
 		m_window.clear(sf::Color{ 0x44, 0x55, 0x66, 0xff });
 
-		switch (m_states) {
-		case GamesStates::menu:
+		switch (m_state) {
+		case GamesState::menu:
 			m_window.draw(menuText);
 			m_window.draw(startText);
 			break;
 
-		case GamesStates::running:
-			m_layer->Render(m_batch);
-			m_ground->Render(m_batch);
+		case GamesState::running:
+			m_layer.RenderEntities(m_batch);
+			m_ground.Render(m_batch);
 			m_batch.present(m_window);
 			m_player.Render(m_window);
 			m_window.draw(currentScoreText);
 			break;
 
-		case GamesStates::lose:
-			m_ground->Clear();
-			m_layer->Clear();
+		case GamesState::lose:
+			m_ground.Clear();
+			m_layer.ClearEntities();
 			m_window.draw(highScoreText);
 			m_window.draw(scoreText);
 			m_window.draw(retryText);
@@ -136,17 +136,18 @@ namespace runner
 		}
 
 		if (key == sf::Keyboard::Key::R) {
-			if (m_states == GamesStates::lose) {
-				m_states = GamesStates::menu;
+			if (m_state == GamesState::lose) {
+				m_state = GamesState::menu;
 			}
 		}
 
 		if (key == sf::Keyboard::Key::S) {
-			if (m_states != GamesStates::running) {
-				m_states = GamesStates::running;
+			if (m_state != GamesState::running) {
+				m_state = GamesState::running;
 				m_score = 0;
-				m_ground = std::make_unique<Ground>();
-				m_layer = std::make_unique<Layer>();
+				m_ground = Ground();
+				m_layer = Layer();
+				//m_layer = std::make_unique<Layer>();
 			}
 		}
 	}

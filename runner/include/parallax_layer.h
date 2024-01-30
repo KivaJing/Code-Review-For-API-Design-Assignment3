@@ -11,12 +11,13 @@ struct LayerSetupParams {
 	bool isHollow;
 };
 
-class Layer: public Entity
+class Layer: public EntityManager
 {
 	RandomNumberGenerater rng;
 	static constexpr float top = 50.0f;
 
 public:
 	Layer();
+	Layer& operator=(const Layer& other);
 	void GenerateBackground(const LayerSetupParams& params);
 };

@@ -1,13 +1,21 @@
-#include "AssetManager.h"
+#include "TextManager.h"
 #include <string_view>
 #include <stdexcept>
 #include <format>
+#include <cstdio>
+#include <print>
 
 using namespace std::literals::string_view_literals;
 
 void TextManager::LoadFontFile(const std::string& filePath) {
-    if (!m_font.loadFromFile(filePath)){
-        throw(std::runtime_error(std::format("Unable to load font: {}"sv, filePath)));
+
+    try {
+        if (!m_font.loadFromFile(filePath)) {
+            throw std::runtime_error(std::format("Unable to load font: {}"sv, filePath));
+        }
+    }
+    catch (const std::exception& e) {
+        std::print("Exception caught: ", e.what());
     }
 }
 

@@ -1,54 +1,53 @@
 #include "entity.h"
 
-void Entity::Move(float m_deltatime)
+void SingleEntity::Move(float m_deltatime)
 {
-	for (auto& entity : entity_list)
-	{
-		SingleEntityMove(entity, m_deltatime);
-	}
+    entity.rect.left += m_deltatime * entity.m_Speed.x;
+    if (entity.rect.left + entity.rect.width < 0)
+    {
+        entity.rect.left = screen_width;
+    }
 }
 
-void Entity::SingleEntityMove(Rect_entity& entity, float m_deltatime)
+void SingleEntity::Update(float m_deltatime)
 {
-	entity.rect.left += m_deltatime * entity.m_Speed.x;
-	if (entity.rect.left + entity.rect.width < 0)
-	{
-		entity.rect.left = screen_width;
-	}
+    Move(m_deltatime);
 }
 
-void Entity::Update(float m_deltatime)
+void SingleEntity::Render(runner::PrimitiveBatch& batch) const
 {
-	if (is_active && entity_list.size())
-	{
-		Move(m_deltatime);
-	}
+    if (entity.is_hollow)
+    {
+        batch.draw_rectangle(entity.rect, entity.thickness, entity.color);
+    }
+    else
+    {
+        batch.draw_rectangle(entity.rect, entity.color);
+    }
 }
 
-void Entity::Render(runner::PrimitiveBatch& batch)
+void EntityManager::AddEntity(const Rect_entity& entity)
 {
-	if (is_active && !entity_list.empty())
-	{
-		for (const auto& entity : entity_list)
-		{
-			if (entity.is_hollow)
-			{
-				batch.draw_rectangle(entity.rect, entity.thickness, entity.color);
-			}
-			else
-			{
-				batch.draw_rectangle(entity.rect, entity.color);
-			}
-		}
-	}
+    entity_list.emplace_back(entity);
 }
 
-void Entity::Add_entity(Rect_entity entity)
+void EntityManager::ClearEntities()
 {
-	entity_list.emplace_back(entity.rect, entity.is_hollow, entity.thickness, entity.color, entity.m_Speed);
+    entity_list.clear();
 }
 
-void Entity::Clear()
+void EntityManager::UpdateEntities(float m_deltatime)
 {
-	entity_list.clear();
+    for (auto& entity : entity_list)
+    {
+        entity.Update(m_deltatime);
+    }
+}
+
+void EntityManager::RenderEntities(runner::PrimitiveBatch& batch)
+{
+    for (const auto& entity : entity_list)
+    {
+        entity.Render(batch);
+    }
 }

@@ -36,7 +36,7 @@
     <ClCompile Include="src\ground.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\AssetManager.cpp">
+    <ClCompile Include="src\TextManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Animator.cpp">
@@ -68,7 +68,7 @@
     <ClInclude Include="include\ground.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\AssetManager.h">
+    <ClInclude Include="include\TextManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Animator.h">

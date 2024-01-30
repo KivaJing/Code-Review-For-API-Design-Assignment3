@@ -1,15 +1,13 @@
 #pragma once
-#include "entity.h"
 #include "Animator.h"
 
-class Player final: public Entity
+class Player
 {
 	static constexpr float scale = 2.0f;
 	static constexpr float duration = 1.5f;
 	static constexpr float jump_height = 400.0f;
 	static constexpr float landingPositionY = 150.0f;
-	const sf::Vector2f size = {100.0f, 200.0f};
-
+	sf::Vector2f size = {100.0f, 200.0f};
 	sf::Vector2f position = {200.0f, 150.0f};
 	float jump_timer = 0;
 	bool is_on_ground = true;

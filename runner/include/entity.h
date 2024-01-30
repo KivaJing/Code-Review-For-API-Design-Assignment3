@@ -2,29 +2,38 @@
 #include "batch.hpp"
 #include <vector>
 
-class Entity
+struct Rect_entity
 {
-	bool is_active = true;
+	sf::FloatRect rect = { 100.0f, 100.0f, 100.0f, 100.0f };
+	bool is_hollow = true;
+	float thickness = 1.0f;
+	sf::Color color = sf::Color::Red;
+	sf::Vector2f m_Speed = { 0.0f, 0.0f };
+};
 
-protected:
+class SingleEntity
+{
 	static constexpr float screen_width = 1280.0f;
 	static constexpr float screen_height = 720.0f;
 
-	struct Rect_entity
-	{
-		sf::FloatRect rect = { 100.0f, 100.0f, 100.0f, 100.0f };
-		bool is_hollow = true;
-		float thickness = 1.0f;
-		sf::Color color = sf::Color::Red;
-		sf::Vector2f m_Speed = { 0.0f, 0.0f };
-	};
+public:
+	Rect_entity entity;
+
+	void Move(float m_deltatime);
+	void Update(float m_deltatime);
+	void Render(runner::PrimitiveBatch& batch) const;
+};
+
+class EntityManager
+{
+private:
+	std::vector<SingleEntity> entity_list;
 
 public:
-	std::vector <Rect_entity> entity_list;
-	virtual void Move(float m_deltatime);
-	void SingleEntityMove(Rect_entity& entity, float m_deltatime);
-	virtual void Update(float m_deltatime);
-	virtual void Render(runner::PrimitiveBatch& batch);
-	virtual void Add_entity(Rect_entity entity);
-	virtual void Clear();
+	static constexpr float screen_width = 1280.0f;
+	static constexpr float screen_height = 720.0f;
+	void AddEntity(const Rect_entity& entity);
+	void ClearEntities();
+	void UpdateEntities(float m_deltatime);
+	void RenderEntities(runner::PrimitiveBatch& batch);
 };

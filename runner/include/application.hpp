@@ -1,13 +1,13 @@
 #pragma once
 #include "batch.hpp"
-#include "AssetManager.h"
+#include "TextManager.h"
 #include "collision.h"
 #include "parallax_layer.h"
 #include "ground.h"
 #include "player.h"
 #include "collision.h"
 
-enum class GamesStates
+enum class GamesState
 {
 	menu = 0,
 	running = 1,
@@ -19,10 +19,7 @@ namespace runner
 	class Application final
 	{
 	public:
-		Application() {
-			m_ground = std::make_unique<Ground>();
-			m_layer = std::make_unique<Layer>();
-		};
+		Application() = default;
 		void run();
 
 	private:
@@ -42,11 +39,11 @@ namespace runner
 		sf::Clock        m_clock;
 		bool             m_running = true;
 		float            m_deltatime = 0.0f;
-		std::unique_ptr<Ground> m_ground{};
-		std::unique_ptr<Layer> m_layer{};
+		Ground           m_ground;
+		Layer            m_layer;
 		Player           m_player{};
 		TextManager      m_textManager;
-		GamesStates      m_states;
+		GamesState       m_state;
 		int              m_score = 0;
 		int              m_high_score = 0;
 		sf::Text         menuText, startText, currentScoreText, scoreText, highScoreText, loseText, retryText;

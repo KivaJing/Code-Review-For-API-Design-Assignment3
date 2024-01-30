@@ -9,13 +9,14 @@ class RandomNumberGenerater
 public:
 	RandomNumberGenerater() { re.seed(rd()); }
 
-	float GetRandomFloat(float min, float max) {
-		std::uniform_real_distribution<float> distribution(min, max);
+	template <typename T>
+	T GetRandom(T min, T max) {
+		std::uniform_real_distribution<T> distribution(min, max);
 		return distribution(re);
 	}
 
-	int GetRandomInt(int min, int max) {
+	sf::Uint8 GetRandomInt(int min, int max) {
 		std::uniform_int_distribution<int> distribution(min, max);
-		return distribution(re);
+		return static_cast<sf::Uint8>(distribution(re));
 	}
 };
