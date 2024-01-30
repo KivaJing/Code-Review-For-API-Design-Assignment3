@@ -24,10 +24,8 @@ Ground& Ground::operator=(const Ground& other)
 		this->barrier_color = other.barrier_color;
 		this->m_Speed = other.m_Speed;
 		this->barriers = other.barriers;
-		this->is_active = other.is_active;
 		this->add_barrier_time = other.add_barrier_time;
 		this->wait_time = other.wait_time;
-		this->groundEntity = other.groundEntity;
 		this->entityManager = other.entityManager;
 	}
 	return *this;
@@ -46,11 +44,7 @@ void Ground::Render(runner::PrimitiveBatch& batch)
 
 void Ground::Update(float m_deltatime)
 {
-	if (is_active)
-	{
-		Move(m_deltatime);
-	}
-
+	Move(m_deltatime);
 	wait_time += m_deltatime;
 
 	if (wait_time > add_barrier_time)
@@ -62,8 +56,8 @@ void Ground::Update(float m_deltatime)
 
 void Ground::Clear()
 {
-	barriers.clear();
 	wait_time = 0;
+	barriers.clear();
 	entityManager.ClearEntities();
 }
 
@@ -84,8 +78,6 @@ int Ground::GetBarrierQuantity() noexcept
 
 void Ground::Move(float m_deltatime)
 {
-	groundEntity.Move(m_deltatime);
-
 	for (auto& barrier : barriers)
 	{
 		barrier.rect.left += m_deltatime * barrier.m_Speed.x;
@@ -96,7 +88,7 @@ void Ground::Move(float m_deltatime)
 	}
 }
 
-void Ground::AddBarriers(Rect_entity barrier)
+void Ground::AddBarriers(RectEntity barrier)
 {
 	barriers.emplace_back(barrier.rect, barrier.is_hollow, barrier.thickness, barrier.color, barrier.m_Speed);
 }

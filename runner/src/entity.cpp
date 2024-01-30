@@ -26,7 +26,7 @@ void SingleEntity::Render(runner::PrimitiveBatch& batch) const
     }
 }
 
-void EntityManager::AddEntity(const Rect_entity& entity)
+void EntityManager::AddEntity(const RectEntity& entity)
 {
     entity_list.emplace_back(entity);
 }

@@ -2,7 +2,7 @@
 #include "batch.hpp"
 #include <vector>
 
-struct Rect_entity
+struct RectEntity
 {
 	sf::FloatRect rect = { 100.0f, 100.0f, 100.0f, 100.0f };
 	bool is_hollow = true;
@@ -17,7 +17,7 @@ class SingleEntity
 	static constexpr float screen_height = 720.0f;
 
 public:
-	Rect_entity entity;
+	RectEntity entity;
 
 	void Move(float m_deltatime) noexcept;
 	void Update(float m_deltatime);
@@ -32,7 +32,7 @@ private:
 public:
 	static constexpr float screen_width = 1280.0f;
 	static constexpr float screen_height = 720.0f;
-	void AddEntity(const Rect_entity& entity);
+	void AddEntity(const RectEntity& entity);
 	void ClearEntities() noexcept;
 	void UpdateEntities(float m_deltatime);
 	void RenderEntities(runner::PrimitiveBatch& batch);

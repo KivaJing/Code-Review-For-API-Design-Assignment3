@@ -8,22 +8,18 @@ class Ground
 	sf::FloatRect barrierSize = { 1200.0f, 450.0f, 50.0f, 100.0f };
 	sf::Color barrier_color = { 200,200,200 };
 	sf::Vector2f m_Speed = { -400.0f, 0.0f };
-	std::vector <Rect_entity> barriers;
-	bool is_active = true;
+	std::vector <RectEntity> barriers;
 	float add_barrier_time = 15.0f;
 	float wait_time = 0.0f;
 	RandomNumberGenerater rng;
-
-	SingleEntity groundEntity;
 	EntityManager entityManager;
 
 	void Move(float m_deltatime);
-	void AddBarriers(Rect_entity barrier);
+	void AddBarriers(RectEntity barrier);
 
 public:
 	Ground();
 	Ground& operator=(const Ground& other);
-
 	void Render(runner::PrimitiveBatch& batch);
 	void Update(float m_deltatime);
 	void Clear();
