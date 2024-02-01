@@ -7,11 +7,11 @@ class Player
 	static constexpr float duration = 1.5f;
 	static constexpr float jump_height = 400.0f;
 	static constexpr float landingPositionY = 150.0f;
-	sf::Vector2f size = {100.0f, 200.0f};
+	static const sf::Vector2f size;
 	sf::Vector2f position = {200.0f, 150.0f};
 	float jump_timer = 0;
 	bool is_on_ground = true;
-	Animator anim{};
+	Animator anim{"assets/playerFrame1.png", "assets/playerFrame2.png"};
 
 public:
 	void Render(sf::RenderTarget& target);

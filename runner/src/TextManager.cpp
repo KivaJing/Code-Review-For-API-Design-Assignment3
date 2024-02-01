@@ -2,30 +2,22 @@
 #include <string_view>
 #include <stdexcept>
 #include <format>
-#include <cstdio>
-#include <print>
 
 using namespace std::literals::string_view_literals;
 
 void TextManager::LoadFontFile(const std::string& filePath) {
-
-    try {
-        if (!m_font.loadFromFile(filePath)) {
-            throw std::runtime_error(std::format("Unable to load font: {}"sv, filePath));
-        }
-    }
-    catch (const std::exception& e) {
-        std::print("Exception caught: ", e.what());
-    }
+	if (!m_font.loadFromFile(filePath)) {
+		throw std::runtime_error(std::format("Unable to load font: {}"sv, filePath));
+	}
 }
 
 sf::Text TextManager::SetText(std::string textSentence, int size, sf::Color color, float positionX, float positionY)
 {
-    sf::Text text;
-    text.setFont(m_font);
-    text.setCharacterSize(size);
-    text.setFillColor(color);
-    text.setPosition(positionX, positionY);
-    text.setString(textSentence);
-    return text;
+	sf::Text text;
+	text.setFont(m_font);
+	text.setCharacterSize(size);
+	text.setFillColor(color);
+	text.setPosition(positionX, positionY);
+	text.setString(textSentence);
+	return text;
 }

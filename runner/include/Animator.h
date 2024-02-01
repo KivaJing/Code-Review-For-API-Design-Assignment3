@@ -11,7 +11,7 @@ class Animator
 	bool isFirstFrame = true;
 
 public:
-	Animator() noexcept;
+	Animator(std::string filePath1, std::string filePath2);
 	void Animate(float m_deltatime);
 	void Render(sf::RenderTarget& target, sf::Vector2f position, float scale);
 };

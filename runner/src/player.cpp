@@ -1,5 +1,7 @@
 #include "player.h"
 
+const sf::Vector2f Player::size = sf::Vector2f{ 100.0f, 200.0f };
+
 void Player::Render(sf::RenderTarget& target)
 {
 	anim.Render(target, position, scale);

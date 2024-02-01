@@ -1,11 +1,9 @@
 #pragma once
 #include "batch.hpp"
 #include "TextManager.h"
-#include "collision.h"
 #include "parallax_layer.h"
 #include "ground.h"
 #include "player.h"
-#include "collision.h"
 
 enum class GamesState
 {
@@ -24,7 +22,6 @@ namespace runner
 
 	private:
 		bool enter();
-		void exit() noexcept;
 		void CheckCollision();
 		bool Update();
 		void Render();

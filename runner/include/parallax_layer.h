@@ -13,11 +13,10 @@ struct LayerSetupParams {
 
 class Layer: public EntityManager
 {
-	RandomNumberGenerater rng;
+	RandomNumberGenerator rng;
 	static constexpr float top = 50.0f;
 
 public:
 	Layer();
-	Layer& operator=(const Layer& other);
 	void GenerateBackground(const LayerSetupParams& params);
 };

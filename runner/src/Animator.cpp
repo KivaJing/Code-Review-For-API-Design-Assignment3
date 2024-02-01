@@ -2,25 +2,17 @@
 #include <string_view>
 #include <stdexcept>
 #include <format>
-#include <cstdio>
-#include <print>
 
 using namespace std::literals::string_view_literals;
 
-Animator::Animator() noexcept
+Animator::Animator(std::string filePath1, std::string filePath2)
 {
-	try {
-		if (!sprite1.loadFromFile("assets/playerFrame1.png")) {
-			throw std::runtime_error(std::format("Unable to load texture: {}"sv, "assets/playerFrame1.png"));
-		}
-		if (!sprite2.loadFromFile("assets/playerFrame2.png")) {
-			throw std::runtime_error(std::format("Unable to load texture: {}"sv, "assets/playerFrame2.png"));
-		}
+	if (!sprite1.loadFromFile(filePath1)) {
+		throw std::runtime_error(std::format("Unable to load texture: {}"sv, filePath1));
 	}
-	catch (const std::exception& e) {
-		std::print("Exception caught: ", e.what());
+	if (!sprite2.loadFromFile(filePath2)) {
+		throw std::runtime_error(std::format("Unable to load texture: {}"sv, filePath2));
 	}
-
 }
 
 void Animator::Animate(float m_deltatime)

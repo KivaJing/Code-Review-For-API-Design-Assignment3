@@ -6,15 +6,6 @@ Layer::Layer()
     GenerateBackground({ 50,250,100,300,250, true });
 }
 
-Layer& Layer::operator=(const Layer& other)
-{
-    if (this != &other)
-    {
-        EntityManager::operator=(other);
-    }
-    return *this;
-}
-
 void Layer::GenerateBackground(const LayerSetupParams& params)
 {
     float left = 0.0f;

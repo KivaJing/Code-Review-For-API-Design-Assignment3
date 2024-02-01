@@ -32,8 +32,6 @@ namespace runner
 
 			Render();
 		}
-
-		exit();
 	}
 
 	bool Application::enter()
@@ -46,10 +44,6 @@ namespace runner
 		return true;
 	}
 
-	void Application::exit() noexcept
-	{
-	}
-
 	void Application::CheckCollision()
 	{
 		int quantity = m_ground.GetBarrierQuantity();
@@ -58,7 +52,7 @@ namespace runner
 			sf::FloatRect barrierRect = m_ground.GetBarrier(i);
 
 			if (barrierRect.left != 1280.0f) {
-				bool collided = Collision::Collide(barrierRect, barrierRect, m_player.GetRect());
+				bool collided = barrierRect.intersects(m_player.GetRect());
 				if (collided) {
 					m_state = GamesState::lose;
 					GameOver();
@@ -147,7 +141,6 @@ namespace runner
 				m_score = 0;
 				m_ground = Ground();
 				m_layer = Layer();
-				//m_layer = std::make_unique<Layer>();
 			}
 		}
 	}

@@ -108,7 +108,6 @@
     <ClCompile Include="src\application.cpp" />
     <ClCompile Include="src\TextManager.cpp" />
     <ClCompile Include="src\batch.cpp" />
-    <ClCompile Include="src\collision.cpp" />
     <ClCompile Include="src\entity.cpp" />
     <ClCompile Include="src\ground.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -121,7 +120,6 @@
     <ClInclude Include="include\player.h" />
     <ClInclude Include="include\application.hpp" />
     <ClInclude Include="include\batch.hpp" />
-    <ClInclude Include="include\collision.h" />
     <ClInclude Include="include\entity.h" />
     <ClInclude Include="include\ground.h" />
     <ClInclude Include="include\parallax_layer.h" />

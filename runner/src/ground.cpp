@@ -15,22 +15,6 @@ Ground::Ground()
 	AddBarriers({ barrierSize, false, 0, barrier_color, { -400, 0 } });
 }
 
-Ground& Ground::operator=(const Ground& other)
-{
-	if (this != &other)
-	{
-		this->floor = other.floor;
-		this->barrierSize = other.barrierSize;
-		this->barrier_color = other.barrier_color;
-		this->m_Speed = other.m_Speed;
-		this->barriers = other.barriers;
-		this->add_barrier_time = other.add_barrier_time;
-		this->wait_time = other.wait_time;
-		this->entityManager = other.entityManager;
-	}
-	return *this;
-}
-
 void Ground::Render(runner::PrimitiveBatch& batch)
 {	
 	batch.draw_rectangle(floor, barrier_color);
